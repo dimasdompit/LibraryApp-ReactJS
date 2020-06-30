@@ -1,0 +1,172 @@
+/* .detailHero {
+  background: url("../../../assets/images/DILAN-Dummy.png") no-repeat center;
+  background-size: cover;
+  height: 60vh;
+}
+
+.genreDetail {
+  margin-top: 20px;
+  text-align: center;
+  padding: 0 10px;
+  background-color: #fbcc38;
+  color: white;
+  border-radius: 50px;
+  font-weight: bold;
+  width: 80px;
+  margin-bottom: 0;
+}
+
+.titleDetail {
+  font-weight: bolder;
+}
+
+.dateDetail {
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 50px;
+}
+
+.available {
+  color: #99d815;
+}
+
+.linkDetail {
+  position: relative;
+  left: 170px;
+  margin-left: 15px;
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+}
+
+.btnBorrow {
+  background-color: #fbcc38;
+  padding: 8px 30px;
+  border: none;
+  position: absolute;
+  right: 90px;
+  bottom: -180px;
+  box-shadow: 0 5px 8px #ccc;
+}
+
+.btnBorrow:hover {
+  background-color: orange;
+} */
+
+.detailTopMenu {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px 0 20px;
+}
+
+.detailContent {
+  position: relative;
+}
+
+.detailButtonBack {
+  color: black;
+  font-size: 20px;
+  background-color: white;
+  padding: 10px 16px;
+  margin-left: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 6px rgb(59, 59, 59);
+  transition: 0.3s;
+}
+
+.detailButtonBack:hover {
+  background-color: #eee;
+}
+
+.detailLink {
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0 15px;
+  padding-right: 0;
+  box-sizing: border-box;
+  color: white;
+  text-shadow: 0 2px 2px rgb(119, 119, 119);
+}
+
+.detailLink:hover {
+  color: #eee;
+}
+
+/* .detailModalEdit {
+  margin-top: 10%;
+} */
+
+.detailLeft {
+  margin: 20px;
+  padding: 0 20px;
+}
+
+.detailGenre {
+  display: inline-block;
+  background-color: #fbcc38;
+  font-size: 17px;
+  padding: 5px 24px;
+  border-radius: 15px;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.detailTitle {
+  text-transform: uppercase;
+  color: #000;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.detailDate {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 32px;
+}
+
+.detailStatus {
+  color: #99d815;
+  margin-top: 42px;
+  margin-bottom: 24px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.detailDescription {
+  font-size: 18px;
+}
+
+.detailBorrow {
+  position: absolute;
+  bottom: 70px;
+  right: 200px;
+}
+
+.btnBorrow {
+  font-size: 22px;
+  border: none;
+  color: #fff;
+  background-color: #fbcc38;
+  padding: 8px 35px;
+  font-weight: 500;
+  position: absolute;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.btnBorrow:hover {
+  background-color: orange;
+  color: white;
+}
+
+.detailBookImage img {
+  width: 200px;
+  border-radius: 20px;
+  position: absolute;
+  top: -360px;
+  right: 40px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+}

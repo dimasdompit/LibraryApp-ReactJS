@@ -1,0 +1,215 @@
+.homeContainer {
+  box-sizing: border-box;
+  /* position: relative; */
+  /* width: auto; */
+}
+
+.homeDashboard {
+  /* width: 100%; */
+}
+
+.homeSidebar {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  height: 100vh;
+  /* display: none; */
+  background: #fff;
+  z-index: 10;
+  position: sticky;
+  top: 0;
+}
+
+.homeProfileImg {
+  text-align: center;
+  margin-top: 45px;
+  padding-bottom: 20px;
+}
+
+.homeUsername {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 35px;
+}
+
+.homeItems {
+  /* padding: 10px 0; */
+  font-size: 20px;
+}
+
+.homeItemsName {
+  color: black;
+}
+
+.homeItemsName:hover {
+  color: grey;
+}
+
+/* ======== CONTENT STYLES ========= */
+
+.homeBody {
+  /* width: 100% !important; */
+  /* position: sticky; */
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbarArea {
+  /* display: block; */
+  padding: 0;
+  /* margin-left: 10px; */
+}
+
+.homeTopnav {
+  background-color: white;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+  width: 100% !important;
+  /* margin: 0 auto; */
+  padding: 20px 30px;
+  box-sizing: border-box;
+  /* height: 100%; */
+  /* top: 0; */
+  /* position: fixed; */
+  z-index: 9;
+}
+
+.homeDropdown {
+  color: black !important;
+  font-weight: 600;
+}
+
+.homeSearch {
+  /* width: 100% !important; */
+  /* margin-left: 100px; */
+  /* width: 400px; */
+}
+
+.homeSearchButton {
+  border: 1px solid #ccc;
+  border-right: none;
+  border-radius: 50px;
+  height: 38px;
+  background-color: transparent;
+  color: #ccc;
+}
+
+.homeSearchButton:hover,
+.homeSearchButton:link,
+.homeSearchButton:focus {
+  border: 1px solid #ccc;
+  border-right: none;
+  background-color: transparent;
+  color: #ccc;
+}
+
+.homeSearchInput {
+  border-radius: 50px;
+  border-left: none;
+}
+
+.homeBrand span {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+}
+
+.homeBrand span:hover {
+  text-decoration: none;
+}
+
+.homeContent {
+  padding: 0 20px;
+}
+
+/* SLIDER STYLES */
+
+.homeSlider {
+  margin: 50px 0 80px 0;
+}
+
+.sliderArea {
+  padding: 0 20px;
+  position: relative;
+}
+
+.homeSliderImage {
+  width: 100% !important;
+  background: center;
+  height: 200px;
+  border-radius: 50px;
+}
+
+.sliderHeadings {
+  position: absolute;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  width: 87%;
+  padding: 10px 10px;
+  border-radius: 30px;
+  bottom: 5px;
+  left: 60px;
+  box-sizing: border-box;
+}
+
+.sliderHeadings h3 {
+  font-size: 35px;
+}
+
+/* CARD STYLES */
+.cardRow {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.homeCards {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.cardContainer {
+  /* font-size: 90px; */
+  /* display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: space-between !important; */
+}
+
+.cardContent {
+  /* flex: 0 1 24% !important; */
+  text-align: center;
+  border-radius: 15px;
+  width: 250px;
+  overflow: hidden;
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
+}
+
+.cardContent:hover {
+  transform: scale(1.1);
+}
+
+.cardImage {
+  width: 100%;
+  height: 180px;
+  margin-bottom: 0 !important;
+}
+
+.cardBody {
+  height: 200px;
+}
+
+.cardLink {
+  text-decoration: none !important;
+}
+
+.cardTitle {
+  margin-top: 0 !important;
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+}
+
+.cardText {
+  text-align: left;
+  font-size: 15px;
+  color: #424242;
+}

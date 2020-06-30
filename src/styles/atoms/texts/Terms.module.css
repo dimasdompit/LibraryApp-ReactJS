@@ -1,0 +1,12 @@
+.terms {
+  margin-top: 1rem;
+  font-weight: bolder;
+  color: #d0cccc;
+  text-shadow: 0 1px 1px black;
+  margin-bottom: 10px;
+  transform: translateY(30%);
+}
+
+.terms span {
+  color: black;
+}

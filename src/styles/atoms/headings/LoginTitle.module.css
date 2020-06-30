@@ -1,0 +1,10 @@
+.loginTitle {
+  font-size: 64px;
+}
+
+h2.loginTitle {
+  font-weight: bold;
+  margin-top: 4rem;
+  font-size: 50px;
+  color: #424242;
+}

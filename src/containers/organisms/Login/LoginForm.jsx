@@ -1,0 +1,84 @@
+// import React, { Component } from "react";
+// import { Form, FormGroup } from "reactstrap";
+// import { Link } from "react-router-dom";
+
+// import axios from "axios";
+
+// import Title from "../../../components/atoms/headings/Title";
+// import Text1 from "../../../components/atoms/texts/Text1";
+// // import InputLoginGroup from "../../../components/molecules/InputLoginGroup";
+// import InputForm from "../../../components/atoms/forms/InputForm";
+// import MainButton from "../../../components/atoms/buttons/MainButton";
+// import ButtonOutline from "../../../components/atoms/buttons/ButtonOutline";
+// import Terms from "../../../components/atoms/texts/Terms";
+
+// import Logo from "../../../assets/images/bookshelf.png";
+// import Styles from "../../../styles/organism/LoginForm.module.css";
+// import CheckBox from "../../../components/atoms/forms/CheckBox";
+
+// class LoginForm extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       username: "",
+//       password: "",
+//     };
+//   }
+
+//   handleLogin = (event) => {
+//     event.preventDefault();
+//     axios({
+//       method: "POST",
+//       url: "http://localhost:3000/auth/login",
+//       data: {
+//         username: this.state.username,
+//         password: this.state.password,
+//       },
+//     })
+//       .then((response) => {
+//         console.log(response);
+//         console.log(this.props.history);
+//       })
+//       .catch((error) => {
+//         console.log(error.response);
+//       });
+//   };
+
+//   render() {
+//     return (
+//       <div className={Styles.contentLogin}>
+//         <img src={Logo} alt="Library-Logo" className={Styles.contentLogo} />
+//         <Title text="Login" />
+//         <Text1 text="Welcome Back, Please Login to your account!" />
+//         <Form onSubmit={this.handleLogin}>
+//           <FormGroup>
+//             <InputForm
+//               type="text"
+//               name="username"
+//               value={this.state.username}
+//               placeholder="Username or Email Address"
+//               onChange={(e) => this.setState({ username: e.target.value })}
+//             />
+//             <InputForm
+//               type="password"
+//               name="password"
+//               value={this.state.password}
+//               placeholder="Password"
+//               onChange={(e) => this.setState({ password: e.target.value })}
+//             />
+//           </FormGroup>
+//           <FormGroup>
+//             <CheckBox type="checkbox" />
+//           </FormGroup>
+//           <MainButton text="Login" type="submit" onClick={this.showAlert} />
+//           <Link to="/register">
+//             <ButtonOutline text="Sign Up" type="button" />
+//           </Link>
+//         </Form>
+//         <Terms />
+//       </div>
+//     );
+//   }
+// }
+
+// export default LoginForm;

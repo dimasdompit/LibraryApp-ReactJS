@@ -1,0 +1,10 @@
+.loginArea {
+  box-sizing: border-box;
+}
+
+.headerLogin {
+  background: url(../../../assets/images/library-img.jpg) no-repeat center;
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)); */
+  background-size: cover;
+  height: 100vh;
+}
