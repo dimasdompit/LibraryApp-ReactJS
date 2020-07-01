@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+// import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import {
   Container,
@@ -31,7 +31,6 @@ import Sidebar from "../../organisms/Sidebar/Sidebar";
 import BookCards from "../../../components/molecules/BookCards";
 import BookSlider from "../../organisms/Slider/Slider";
 // import HomeSlider from "../../organisms/Slider/Slider";
-import TopNav from "../../organisms/Navbar/Navbar";
 // import Card from "../../organisms/Card/Card";
 
 class Home extends Component {
@@ -54,8 +53,7 @@ class Home extends Component {
   };
 
   handleSortGenre = (dropdown) => {
-    // this.props.history.push(`/?search=${params}`);
-    console.log(dropdown);
+    this.props.history.push(`/?sortBy=${dropdown}`);
     const token = localStorage.getItem("token");
     axios({
       method: "GET",
@@ -150,7 +148,6 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.props.location);
     // const { isLoggedIn } = this.state;
 
     // if (!isLoggedIn) {
@@ -169,74 +166,6 @@ class Home extends Component {
                 <Row>
                   {/* <Topnav /> */}
                   {/* ===== NAVBAR AREA ===== */}
-                  {/* <Col className={Styles.navbarArea}>
-                    <Navbar light expand="md" className={Styles.homeTopnav}>
-                      <NavbarToggler onClick={this.toggle} />
-                      <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="mr-auto" navbar>
-                          <UncontrolledDropdown nav inNavbar>
-                            <DropdownToggle
-                              nav
-                              caret
-                              className={Styles.homeDropdown}
-                            >
-                              All Categories
-                            </DropdownToggle>
-                            <DropdownMenu right>
-                              <DropdownItem>Title</DropdownItem>
-                              <DropdownItem>Genre</DropdownItem>
-                              <DropdownItem>Author</DropdownItem>
-                            </DropdownMenu>
-                          </UncontrolledDropdown>
-                          <UncontrolledDropdown nav inNavbar>
-                            <DropdownToggle
-                              nav
-                              caret
-                              className={Styles.homeDropdown}
-                            >
-                              All Time
-                            </DropdownToggle>
-                            <DropdownMenu right>
-                              <DropdownItem>Newest Books</DropdownItem>
-                              <DropdownItem>Old Books</DropdownItem>
-                            </DropdownMenu>
-                          </UncontrolledDropdown>
-                          <InputGroup className={Styles.homeSearch}>
-                            <InputGroupAddon addonType="prepend">
-                              <Button
-                                type="submit"
-                                className={Styles.homeSearchButton}
-                              >
-                                <FontAwesomeIcon icon={faSearch} />
-                              </Button>
-                            </InputGroupAddon> */}
-                  {/* <Form> */}
-                  {/* <Input
-                              type="text"
-                              className={Styles.homeSearchInput}
-                              value={this.state.search}
-                              onChange={this.getBooksBySearch}
-                              placeholder="Search Book"
-                            /> */}
-                  {/* </Form> */}
-                  {/* </InputGroup> */}
-                  {/* <SearchBar
-                            search={this.state.search}
-                            onChange={this.props.onChange}
-                          /> */}
-                  {/* </Nav>
-                      </Collapse>
-                      <NavbarBrand className={Styles.homeBrand}>
-                        <Link to="/">
-                          <img
-                            src="http://localhost:3006/bookshelf-home.png"
-                            alt="home-logo"
-                          />
-                          <span>DOMSLibrary</span>
-                        </Link>
-                      </NavbarBrand>
-                    </Navbar>
-                  </Col> */}
                   <Topnav
                     genre={this.state.genre}
                     getGenre={this.handleSortGenre}

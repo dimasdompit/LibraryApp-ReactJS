@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Row, Col, Nav, NavItem, NavLink } from "reactstrap";
 import Styles from "../../../styles/pages/Home/Home.module.css";
 import ModalAdd from "../../organisms/Modals/ModalAdd";
+import { Link } from "react-router-dom";
 
 export default class Sidebar extends Component {
   render() {
@@ -38,6 +39,9 @@ export default class Sidebar extends Component {
                   <ModalAdd text="Add Book" />
                   {/* Add Book */}
                 </NavLink>
+                <Link to="/login">
+                  <div className={Styles.homeItemsLogout}>Log Out</div>
+                </Link>
               </NavItem>
             </Nav>
           </Col>

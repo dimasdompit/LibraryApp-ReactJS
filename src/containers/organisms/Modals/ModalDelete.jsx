@@ -74,7 +74,7 @@ class ModalDelete extends Component {
           className={this.props.className}
         >
           <ModalHeader toggle={this.toggle} charCode="x"></ModalHeader>
-          <ModalBody toggle={this.toggle}>
+          <ModalBody>
             <h3 className={modalTitle}>
               Are you sure want to delete this book?
             </h3>

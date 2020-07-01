@@ -57,7 +57,7 @@ class FormLogin extends Component {
         swal({
           icon: "success",
           title: "Login Success",
-          showConfirmaButton: false,
+          button: false,
           timer: 2000,
         });
       })
@@ -66,7 +66,7 @@ class FormLogin extends Component {
         swal({
           icon: "error",
           title: "Incorrect Username or Password",
-          showConfirmationButton: false,
+          showConfirmButton: false,
           confirmButtonColor: "#000000",
         });
       });

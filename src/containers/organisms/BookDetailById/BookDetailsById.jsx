@@ -13,6 +13,17 @@ import Styles from "../../../styles/pages/BookDetails/BookDetails.module.css";
 // import BookDetails from "../../pages/BookDetails/BookDetail";
 
 class BookDetailsById extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      status: this.props.status,
+    };
+  }
+
+  handleBorrowBooks = (event) => {
+    event.preventDefault();
+  };
+
   render() {
     const heroStyles = {
       width: "100%",
@@ -37,6 +48,12 @@ class BookDetailsById extends Component {
                     <ModalEdit
                       text="Edit"
                       className={Styles.detailModalEdit}
+                      title={this.props.title}
+                      image={this.props.image}
+                      description={this.props.description}
+                      genre_id={this.props.genre_id}
+                      author_id={this.props.author_id}
+                      status={this.props.status}
                       id={this.props.id}
                     />
                   </span>

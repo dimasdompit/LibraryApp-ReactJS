@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import {
   Col,
   Collapse,
@@ -15,7 +15,7 @@ import {
   InputGroup,
   InputGroupAddon,
   Button,
-  Form,
+  // Form,
 } from "reactstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -110,13 +110,12 @@ class Topnav extends Component {
               </Nav>
             </Collapse>
             <NavbarBrand className={Styles.homeBrand}>
-              <Link to="/">
-                <img
-                  src="http://localhost:3006/bookshelf-home.png"
-                  alt="home-logo"
-                />
-                <span>DOMSLibrary</span>
-              </Link>
+              <img
+                href="/"
+                src="http://localhost:3006/bookshelf-home.png"
+                alt="home-logo"
+              />
+              <span>DOMSLibrary</span>
             </NavbarBrand>
           </Navbar>
         </Col>

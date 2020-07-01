@@ -29,12 +29,12 @@ class ModalEdit extends Component {
     super(props);
     this.state = {
       modal: false,
-      title: "",
-      image: "",
-      description: "",
-      genre_id: "",
-      author_id: "",
-      status: "",
+      title: this.props.title,
+      image: this.props.image,
+      description: this.props.description,
+      genre_id: this.props.genre_id,
+      author_id: this.props.author_id,
+      status: this.props.status,
     };
   }
 
@@ -111,7 +111,7 @@ class ModalEdit extends Component {
             charCode="x"
             className={headerStyle}
           >
-            <h4>Edit Data</h4>
+            <p>Edit Data</p>
           </ModalHeader>
           <Form onSubmit={this.handleUpdateBooks}>
             <ModalBody className={bodyStyle}>

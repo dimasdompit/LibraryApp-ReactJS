@@ -51,6 +51,7 @@ class ModalAdd extends Component {
     let formData = new FormData();
     formData.append("title", this.state.title);
     formData.append("image", this.state.image[0]);
+    console.log(this.state.image[0]);
     formData.append("description", this.state.description);
     formData.append("genre_id", this.state.genre_id);
     formData.append("author_id", this.state.author_id);
