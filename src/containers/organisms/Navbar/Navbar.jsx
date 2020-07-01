@@ -13,10 +13,16 @@ import {
   DropdownItem,
   Input,
   InputGroup,
-  // InputGroupAddon,
-  // Button,
+  InputGroupAddon,
+  Button,
   Form,
 } from "reactstrap";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
+// import SearchBar from "../../../components/molecules/SearchBar";
+
 import Styles from "../../../styles/pages/Home/Home.module.css";
 
 class Topnav extends Component {
@@ -24,6 +30,8 @@ class Topnav extends Component {
     super(props);
     this.state = {
       isOpen: false,
+      search: "",
+      genre: "genre",
     };
   }
 
@@ -31,6 +39,20 @@ class Topnav extends Component {
     this.setState({
       isOpen: !this.state.isOpen,
     });
+  };
+
+  handleInputChange = async (event) => {
+    await this.setState({
+      search: event.target.value,
+    });
+    this.props.handleState(this.state.search);
+  };
+
+  handleGenre = async (event) => {
+    await this.setState({
+      genre: event.target.value,
+    });
+    this.props.getGenre(this.state.genre);
   };
 
   render() {
@@ -46,9 +68,14 @@ class Topnav extends Component {
                     All Categories
                   </DropdownToggle>
                   <DropdownMenu right>
-                    <DropdownItem>Title</DropdownItem>
-                    <DropdownItem>Genre</DropdownItem>
-                    <DropdownItem>Author</DropdownItem>
+                    {/* <DropdownItem>Title</DropdownItem> */}
+                    <DropdownItem
+                      value={this.state.genre}
+                      onClick={this.handleGenre}
+                    >
+                      Genre
+                    </DropdownItem>
+                    {/* <DropdownItem>Author</DropdownItem> */}
                   </DropdownMenu>
                 </UncontrolledDropdown>
                 <UncontrolledDropdown nav inNavbar>
@@ -61,21 +88,25 @@ class Topnav extends Component {
                   </DropdownMenu>
                 </UncontrolledDropdown>
                 <InputGroup className={Styles.homeSearch}>
-                  {/* <InputGroupAddon addonType="prepend">
-                              <Button className={Styles.homeSearchButton}>
-                                <FontAwesomeIcon icon={faSearch} />
-                              </Button>
-                            </InputGroupAddon> */}
-                  <Form>
-                    <Input
-                      type="search"
-                      className={Styles.homeSearchInput}
-                      value={this.state.query}
-                      onChange={this.handleInputChange}
-                      placeholder="Search Book"
-                    />
-                  </Form>
+                  <InputGroupAddon addonType="prepend">
+                    <Button type="submit" className={Styles.homeSearchButton}>
+                      <FontAwesomeIcon icon={faSearch} />
+                    </Button>
+                  </InputGroupAddon>
+                  {/* <Form> */}
+                  <Input
+                    type="text"
+                    className={Styles.homeSearchInput}
+                    value={this.state.search}
+                    onChange={this.handleInputChange}
+                    placeholder="Search Book"
+                  />
+                  {/* </Form> */}
                 </InputGroup>
+                {/* <SearchBar
+                  search={this.state.search}
+                  onChage={this.props.onChange}
+                /> */}
               </Nav>
             </Collapse>
             <NavbarBrand className={Styles.homeBrand}>
