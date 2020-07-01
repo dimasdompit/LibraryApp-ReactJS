@@ -7,8 +7,8 @@ import axios from "axios";
 import swal from "sweetalert";
 
 import {
-  iconStyle,
-  notifStyle,
+  // iconStyle,
+  // notifStyle,
   modalTitle,
   deleteButton,
 } from "../../../styles/organism/ModalDelete.module.css";

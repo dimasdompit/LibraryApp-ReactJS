@@ -25,7 +25,7 @@ export default class HomeSlider extends Component {
       },
     })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         this.setState({
           books: response.data.data,
         });

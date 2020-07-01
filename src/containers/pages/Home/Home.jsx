@@ -1,24 +1,24 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 import {
   Container,
   Row,
   Col,
-  Collapse,
-  Nav,
-  Navbar,
-  NavbarBrand,
-  NavbarToggler,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Input,
-  InputGroup,
+  // Collapse,
+  // Nav,
+  // Navbar,
+  // NavbarBrand,
+  // NavbarToggler,
+  // UncontrolledDropdown,
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem,
+  // Input,
+  // InputGroup,
   // InputGroupAddon,
   // Button,
-  Form,
+  // Form,
 } from "reactstrap";
 import Styles from "../../../styles/pages/Home/Home.module.css";
 // import LoadingScreen from "../../organisms/Loading/Loading";
