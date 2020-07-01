@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col, Nav, NavItem, NavLink } from "reactstrap";
 import Styles from "../../../styles/pages/Home/Home.module.css";
+import ModalAdd from "../../organisms/Modals/ModalAdd";
 
 export default class Sidebar extends Component {
   render() {
@@ -34,7 +35,8 @@ export default class Sidebar extends Component {
               </NavItem>
               <NavItem className={Styles.homeItems}>
                 <NavLink href="#" className={Styles.homeItemsName}>
-                  Add Book
+                  <ModalAdd text="Add Book" />
+                  {/* Add Book */}
                 </NavLink>
               </NavItem>
             </Nav>

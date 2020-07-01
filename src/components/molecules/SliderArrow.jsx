@@ -18,7 +18,6 @@ export default ({ className, to, onClick }) => (
     className={`button button--text button--icon ${className}`}
     aria-label={to}
     style={arrowStyle}
-    onMouseEnter
   >
     {/* <FontAwesomeIcon className="icon" icon={faArrowLeft} /> */}
     {/* <p>H1</p> */}

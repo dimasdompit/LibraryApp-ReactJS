@@ -13,3 +13,17 @@
   margin: 0 auto;
   margin-bottom: 30px;
 }
+
+.modalTitle {
+  font-size: 20px;
+  margin: 50px auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.deleteButton {
+  background-color: #fbcc38;
+  border: none;
+  margin: 0 8px;
+}

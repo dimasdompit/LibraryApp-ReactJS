@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import {
@@ -24,7 +23,7 @@ import {
   buttonStyle,
 } from "../../../styles/organism/ModalEdit.module.css";
 
-class ModalEdit extends Component {
+class ModalAdd extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,10 +43,10 @@ class ModalEdit extends Component {
     });
   };
 
-  handleUpdateBooks = (event) => {
+  handleAddBooks = (event) => {
     const token = localStorage.getItem("token");
     event.preventDefault();
-    const id = this.props.id;
+    // const id = this.props.id;
 
     let formData = new FormData();
     formData.append("title", this.state.title);
@@ -58,8 +57,8 @@ class ModalEdit extends Component {
     formData.append("status", this.state.status);
 
     axios({
-      method: "PUT",
-      url: "http://localhost:3000/books/" + id,
+      method: "POST",
+      url: "http://localhost:3000/books/",
       data: formData,
       headers: {
         Authorization: token,
@@ -70,7 +69,7 @@ class ModalEdit extends Component {
         console.log(response);
         swal({
           icon: "success",
-          title: `Book with ID = ${id} Successfully Edited`,
+          title: `Book is Successfully Added`,
           showConfirmaButton: false,
           timer: 3000,
         });
@@ -84,19 +83,19 @@ class ModalEdit extends Component {
         console.log(error.response);
         swal({
           icon: "error",
-          title: "Something went wrong!",
+          title: `Add book is invalid!`,
           confirmButtonColor: "#000000",
         });
       });
   };
 
   render() {
-    const { redirect } = this.state;
-    // console.log(redirect);
+    // const { redirect } = this.state;
+    // // console.log(redirect);
 
-    if (redirect) {
-      return <Redirect to={`/details/${this.props.id}`} />;
-    }
+    // if (redirect) {
+    //   return <Redirect to={`/details/${this.props.id}`} />;
+    // }
 
     return (
       <div>
@@ -111,9 +110,9 @@ class ModalEdit extends Component {
             charCode="x"
             className={headerStyle}
           >
-            <h4>Edit Data</h4>
+            <h4>Add Book</h4>
           </ModalHeader>
-          <Form onSubmit={this.handleUpdateBooks}>
+          <Form onSubmit={this.handleAddBooks}>
             <ModalBody className={bodyStyle}>
               <Row>
                 <Col md="3" className="mt-2">
@@ -230,4 +229,4 @@ class ModalEdit extends Component {
   }
 }
 
-export default ModalEdit;
+export default ModalAdd;

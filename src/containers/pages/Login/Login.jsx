@@ -5,6 +5,7 @@ import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
 // Components
+// import LoadingScreen from "../../organisms/Loading/Loading";
 import LoginBanner from "../../organisms/Login/LoginBanner";
 // import LoginForm from "../../organisms/Login/LoginForm";
 import Title from "../../../components/atoms/headings/Title";
@@ -15,6 +16,7 @@ import MainButton from "../../../components/atoms/buttons/MainButton";
 import ButtonOutline from "../../../components/atoms/buttons/ButtonOutline";
 import Terms from "../../../components/atoms/texts/Terms";
 
+import swal from "sweetalert";
 import Logo from "../../../assets/images/bookshelf.png";
 import StylesForm from "../../../styles/organism/LoginForm.module.css";
 import CheckBox from "../../../components/atoms/forms/CheckBox";
@@ -27,6 +29,8 @@ class FormLogin extends Component {
     super(props);
     this.state = {
       redirect: false,
+      isLoggedIn: false,
+      // isLoading: false,
       username: "",
       password: "",
     };
@@ -47,10 +51,24 @@ class FormLogin extends Component {
         localStorage.setItem("refreshToken", response.data.data.refreshToken);
         this.setState({
           redirect: true,
+          isLoggedIn: true,
+          // isLoading: true,
+        });
+        swal({
+          icon: "success",
+          title: "Login Success",
+          showConfirmaButton: false,
+          timer: 2000,
         });
       })
       .catch((error) => {
         console.log(error.response);
+        swal({
+          icon: "error",
+          title: "Incorrect Username or Password",
+          showConfirmationButton: false,
+          confirmButtonColor: "#000000",
+        });
       });
   };
 

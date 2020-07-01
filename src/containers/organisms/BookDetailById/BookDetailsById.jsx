@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col, Container, Button } from "reactstrap";
 import { Link } from "react-router-dom";
+import Moment from "react-moment";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -40,7 +41,11 @@ class BookDetailsById extends Component {
                     />
                   </span>
                   <span className={Styles.detailLink}>
-                    <ModalDelete text="Delete" />
+                    <ModalDelete
+                      text="Delete"
+                      id={this.props.id}
+                      title={this.props.title}
+                    />
                   </span>
                 </section>
               </section>
@@ -52,7 +57,9 @@ class BookDetailsById extends Component {
                 <Col lg="6">
                   <h6 className={Styles.detailGenre}>{this.props.genre}</h6>
                   <h2 className={Styles.detailTitle}>{this.props.title}</h2>
-                  <p className={Styles.detailDate}>{this.props.date}</p>
+                  <p className={Styles.detailDate}>
+                    <Moment format="MMMM DD, YYYY">{this.props.date}</Moment>
+                  </p>
                 </Col>
                 <Col lg="6">
                   <h5 className={Styles.detailStatus}>{this.props.status}</h5>
@@ -72,9 +79,15 @@ class BookDetailsById extends Component {
                     />
                   </div>
                   <div className={Styles.detailBorrow}>
-                    <Button color="warning" className={Styles.btnBorrow}>
-                      Borrow
-                    </Button>
+                    {this.props.status === "Available" ? (
+                      <Button color="warning" className={Styles.btnBorrow}>
+                        Borrow
+                      </Button>
+                    ) : (
+                      <Button color="warning" className={Styles.btnBorrow}>
+                        Return
+                      </Button>
+                    )}
                   </div>
                 </Col>
               </Row>

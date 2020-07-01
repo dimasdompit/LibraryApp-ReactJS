@@ -21,14 +21,16 @@ import {
   Form,
 } from "reactstrap";
 import Styles from "../../../styles/pages/Home/Home.module.css";
+// import LoadingScreen from "../../organisms/Loading/Loading";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
+import Topnav from "../../organisms/Navbar/Navbar";
 import Sidebar from "../../organisms/Sidebar/Sidebar";
-// import HomeSlider from "../../organisms/Slider/Slider";
 import BookCards from "../../../components/molecules/BookCards";
 import BookSlider from "../../organisms/Slider/Slider";
+// import HomeSlider from "../../organisms/Slider/Slider";
 // import TopNav from "../../organisms/Navbar/Navbar";
 // import Card from "../../organisms/Card/Card";
 
@@ -36,7 +38,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogin: false,
+      isLoggedIn: false,
       query: "",
       books: [],
       filteredData: [],
@@ -81,7 +83,7 @@ class Home extends Component {
         console.log(response.data);
         this.setState({
           books: response.data.data,
-          isLogin: true,
+          isLoggedIn: true,
         });
       })
       // .then((data) => {
@@ -100,83 +102,24 @@ class Home extends Component {
   }
 
   render() {
-    const { redirect } = this.state;
+    // const { isLoggedIn } = this.state;
 
-    if (redirect) {
-      return <Redirect to="/" />;
-    }
-
+    // if (!isLoggedIn) {
+    //   return <Redirect to="/login" />;
+    // }
     return (
       <>
         <Container fluid>
           <Row className={Styles.homeDashboard}>
             <Col md="3" sm="3" className={Styles.homeSidebar}>
+              {/* ===== SIDEBAR AREA ===== */}
               <Sidebar />
             </Col>
             <Col md="9" sm="9" className={Styles.homeBody}>
               <Container fluid>
                 <Row>
-                  <Col className={Styles.navbarArea}>
-                    <Navbar light expand="md" className={Styles.homeTopnav}>
-                      <NavbarToggler onClick={this.toggle} />
-                      <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="mr-auto" navbar>
-                          <UncontrolledDropdown nav inNavbar>
-                            <DropdownToggle
-                              nav
-                              caret
-                              className={Styles.homeDropdown}
-                            >
-                              All Categories
-                            </DropdownToggle>
-                            <DropdownMenu right>
-                              <DropdownItem>Title</DropdownItem>
-                              <DropdownItem>Genre</DropdownItem>
-                              <DropdownItem>Author</DropdownItem>
-                            </DropdownMenu>
-                          </UncontrolledDropdown>
-                          <UncontrolledDropdown nav inNavbar>
-                            <DropdownToggle
-                              nav
-                              caret
-                              className={Styles.homeDropdown}
-                            >
-                              All Time
-                            </DropdownToggle>
-                            <DropdownMenu right>
-                              <DropdownItem>Newest Books</DropdownItem>
-                              <DropdownItem>Old Books</DropdownItem>
-                            </DropdownMenu>
-                          </UncontrolledDropdown>
-                          <InputGroup className={Styles.homeSearch}>
-                            {/* <InputGroupAddon addonType="prepend">
-                              <Button className={Styles.homeSearchButton}>
-                                <FontAwesomeIcon icon={faSearch} />
-                              </Button>
-                            </InputGroupAddon> */}
-                            <Form>
-                              <Input
-                                type="search"
-                                className={Styles.homeSearchInput}
-                                value={this.state.query}
-                                onChange={this.handleInputChange}
-                                placeholder="Search Book"
-                              />
-                            </Form>
-                          </InputGroup>
-                        </Nav>
-                      </Collapse>
-                      <NavbarBrand className={Styles.homeBrand}>
-                        <Link to="/">
-                          <img
-                            src="http://localhost:3006/bookshelf-home.png"
-                            alt="home-logo"
-                          />
-                          <span>DOMSLibrary</span>
-                        </Link>
-                      </NavbarBrand>
-                    </Navbar>
-                  </Col>
+                  {/* ===== NAVBAR AREA ===== */}
+                  <Topnav />
                 </Row>
                 <div className={Styles.homeContent}>
                   <Row>
