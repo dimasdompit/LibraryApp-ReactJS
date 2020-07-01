@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Row, Col, Container, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
+import axios from "axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -9,6 +10,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import ModalEdit from "../../organisms/Modals/ModalEdit";
 import ModalDelete from "../../organisms/Modals/ModalDelete";
 
+import swal from "sweetalert";
 import Styles from "../../../styles/pages/BookDetails/BookDetails.module.css";
 // import BookDetails from "../../pages/BookDetails/BookDetail";
 
@@ -22,6 +24,80 @@ class BookDetailsById extends Component {
 
   handleBorrowBooks = (event) => {
     event.preventDefault();
+
+    const token = localStorage.getItem("token");
+    event.preventDefault();
+    const id = this.props.id;
+    const title = this.props.title;
+
+    axios({
+      method: "PUT",
+      url: "http://localhost:3000/books/borrow/" + id,
+      headers: {
+        Authorization: token,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        swal({
+          icon: "success",
+          title: `${title} is Successfully Borrowed`,
+          showConfirmaButton: false,
+          timer: 2500,
+        });
+      })
+      .then(() => {
+        setTimeout(() => {
+          window.location.reload();
+        }, 2500);
+      })
+      .catch((error) => {
+        console.log(error.response);
+        swal({
+          icon: "error",
+          title: "Something went wrong!",
+          confirmButtonColor: "#000000",
+        });
+      });
+  };
+
+  handleReturnBooks = (event) => {
+    event.preventDefault();
+
+    const token = localStorage.getItem("token");
+    event.preventDefault();
+    const id = this.props.id;
+    const title = this.props.title;
+
+    axios({
+      method: "PUT",
+      url: "http://localhost:3000/books/return/" + id,
+      headers: {
+        Authorization: token,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        swal({
+          icon: "success",
+          title: `${title} has been returned`,
+          showConfirmaButton: false,
+          timer: 2500,
+        });
+      })
+      .then(() => {
+        setTimeout(() => {
+          window.location.reload();
+        }, 2500);
+      })
+      .catch((error) => {
+        console.log(error.response);
+        swal({
+          icon: "error",
+          title: "Something went wrong!",
+          confirmButtonColor: "#000000",
+        });
+      });
   };
 
   render() {
@@ -97,11 +173,19 @@ class BookDetailsById extends Component {
                   </div>
                   <div className={Styles.detailBorrow}>
                     {this.props.status === "Available" ? (
-                      <Button color="warning" className={Styles.btnBorrow}>
+                      <Button
+                        onClick={this.handleBorrowBooks}
+                        color="warning"
+                        className={Styles.btnBorrow}
+                      >
                         Borrow
                       </Button>
                     ) : (
-                      <Button color="warning" className={Styles.btnBorrow}>
+                      <Button
+                        onClick={this.handleReturnBooks}
+                        color="warning"
+                        className={Styles.btnBorrow}
+                      >
                         Return
                       </Button>
                     )}
