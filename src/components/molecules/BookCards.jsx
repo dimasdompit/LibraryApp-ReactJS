@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import Styles from "../../styles/pages/Home/Home.module.css";
 
-const BookCards = ({ image, title, description, id }) => {
+const BookCards = ({ image, title, description, id, genre, author }) => {
   return (
     <div>
       <Col className={Styles.homeCards}>

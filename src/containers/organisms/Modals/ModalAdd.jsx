@@ -111,7 +111,7 @@ class ModalAdd extends Component {
             charCode="x"
             className={headerStyle}
           >
-            <h4>Add Book</h4>
+            <p>Add Book</p>
           </ModalHeader>
           <Form onSubmit={this.handleAddBooks}>
             <ModalBody className={bodyStyle}>

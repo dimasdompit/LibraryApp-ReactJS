@@ -67,6 +67,8 @@ class BookDetails extends Component {
                 genre={book.genre}
                 date={book.created_at}
                 status={book.status}
+                author={book.author}
+                genre={book.genre}
               />
             );
           })}

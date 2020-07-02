@@ -41,7 +41,7 @@ class BookDetailsById extends Component {
         console.log(response);
         swal({
           icon: "success",
-          title: `${title} is Successfully Borrowed`,
+          title: `'${title}' is Successfully Borrowed`,
           showConfirmaButton: false,
           timer: 2500,
         });
@@ -80,7 +80,7 @@ class BookDetailsById extends Component {
         console.log(response);
         swal({
           icon: "success",
-          title: `${title} has been returned`,
+          title: `'${title}' has been returned`,
           showConfirmaButton: false,
           timer: 2500,
         });
@@ -127,8 +127,8 @@ class BookDetailsById extends Component {
                       title={this.props.title}
                       image={this.props.image}
                       description={this.props.description}
-                      genre_id={this.props.genre_id}
-                      author_id={this.props.author_id}
+                      genre={this.props.genre}
+                      author={this.props.author}
                       status={this.props.status}
                       id={this.props.id}
                     />

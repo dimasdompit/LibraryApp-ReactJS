@@ -194,6 +194,8 @@ class Home extends Component {
                         <BookCards
                           key={book.id}
                           id={book.id}
+                          author={book.author}
+                          genre={book.genre}
                           image={book.image}
                           title={book.title}
                           description={`${book.description.substring(

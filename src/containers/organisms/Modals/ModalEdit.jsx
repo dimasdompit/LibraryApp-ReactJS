@@ -32,8 +32,8 @@ class ModalEdit extends Component {
       title: this.props.title,
       image: this.props.image,
       description: this.props.description,
-      genre_id: this.props.genre_id,
-      author_id: this.props.author_id,
+      genre: this.props.genre,
+      author: this.props.author,
       status: this.props.status,
     };
   }
@@ -91,6 +91,10 @@ class ModalEdit extends Component {
   };
 
   render() {
+    // console.log(this.state.author);
+    // console.log(this.state.title);
+    // console.log(this.state.genre);
+
     const { redirect } = this.state;
     // console.log(redirect);
 
@@ -169,12 +173,21 @@ class ModalEdit extends Component {
                   <FormGroup>
                     <Input
                       type="text"
-                      value={this.state.author_id}
+                      value={this.state.author}
                       onChange={(e) =>
-                        this.setState({ author_id: e.target.value })
+                        this.setState({ author: e.target.value })
                       }
                       placeholder="1"
                     />
+                    {/* <Input type="select" name="author" id="exampleSelect">
+                      {this.state.author.map((author) => {
+                        return (
+                          <option key={author.id} value={author.id}>
+                            {author.id}
+                          </option>
+                        );
+                      })}
+                    </Input> */}
                   </FormGroup>
                 </Col>
               </Row>
@@ -186,7 +199,7 @@ class ModalEdit extends Component {
                   <FormGroup>
                     <Input
                       type="text"
-                      value={this.state.genre_id}
+                      value={this.state.genre}
                       onChange={(e) =>
                         this.setState({ genre_id: e.target.value })
                       }
