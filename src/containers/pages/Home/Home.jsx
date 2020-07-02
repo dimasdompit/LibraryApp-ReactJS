@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import {
   Container,
@@ -93,7 +93,8 @@ class Home extends Component {
   };
 
   getAllBooks = () => {
-    const token = localStorage.getItem("token");
+    let token = localStorage.getItem("token");
+    let refreshToken = localStorage.getItem("refreshToken");
     axios({
       method: "GET",
       url: "http://localhost:3000/books",
@@ -105,11 +106,49 @@ class Home extends Component {
         console.log(response.data);
         this.setState({
           books: response.data.data,
+          // isLoggedIn: true,
         });
       })
       .catch((error) => {
         console.log(error.response);
+        window.location.pathname = "/login";
       });
+
+    // axios.interceptors.response.use(
+    //   function (response) {
+    //     return response;
+    //   },
+    //   function (error) {
+    //     const originalRequest = error.config;
+    //     if (error.response.status === 401 && !originalRequest._retry) {
+    //       originalRequest._retry = true;
+
+    //       return axios
+    //         .get("http://localhost:3000/auth/refreshToken", {
+    //           headers: { Authorization: refreshToken },
+    //         })
+    //         .then((responseData) => {
+    //           // console.log(responseData.data.token);
+    //           localStorage.setItem("token", responseData.data.data.token);
+    //           localStorage.setItem(
+    //             "refreshToken",
+    //             responseData.data.data.refreshToken
+    //           );
+    //           let token = localStorage.getItem("token");
+    //           axios.defaults.headers.common["Authorization"] = token;
+    //           originalRequest.headers["Authorization"] = token;
+    //           return axios(originalRequest);
+    //         })
+    //         .catch(function (error) {
+    //           console.log(error);
+    //           localStorage.setItem("token", undefined);
+    //           localStorage.setItem("refreshToken", undefined);
+    //           window.location.pathname = "/login";
+    //         });
+    //     }
+    //     return Promise.reject(error);
+    //   }
+    // );
   };
 
   // getBooksBySearch = (event) => {
@@ -142,17 +181,22 @@ class Home extends Component {
   //     });
   // };
 
+  // componentWillMount() {
+  //   this.setState({
+  //     isLoggedIn: true,
+  //   });
+  // }
+
   componentDidMount() {
     this.getAllBooks();
     // this.getBooksBySearch();
   }
 
   render() {
-    // const { isLoggedIn } = this.state;
-
-    // if (!isLoggedIn) {
+    // console.log(this.state.isLoggedIn);
+    // if (this.props.isLoggedIn !== true) {
     //   return <Redirect to="/login" />;
-    // }
+    // } else {
     return (
       <>
         <Container fluid>
@@ -213,6 +257,7 @@ class Home extends Component {
         </Container>
       </>
     );
+    // }
   }
 }
 

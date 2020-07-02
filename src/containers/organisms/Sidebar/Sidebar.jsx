@@ -18,7 +18,7 @@ export default class Sidebar extends Component {
         </Row>
         <Row>
           <Col classID={Styles.homeProfileUser}>
-            <h5 className={Styles.homeUsername}>Niki Zefanya</h5>
+            <h5 className={Styles.homeUsername}>{this.props.username}</h5>
           </Col>
         </Row>
         <Row>

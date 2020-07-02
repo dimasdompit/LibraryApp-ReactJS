@@ -38,6 +38,7 @@ class BookDetails extends Component {
       })
       .catch((error) => {
         console.log(error.response);
+        window.location.pathname = "/login";
       });
   };
 

@@ -27,7 +27,7 @@ class FormRegister extends Component {
     this.state = {
       username: "",
       password: "",
-      roles_id: 1,
+      roles_id: 2,
       redirect: false,
     };
   }
@@ -51,16 +51,21 @@ class FormRegister extends Component {
         });
         swal({
           icon: "success",
-          title: "Register Success",
+          title: `${response.data.data.status}`,
           showConfirmaButton: false,
           timer: 2000,
         });
+      })
+      .then(() => {
+        setTimeout(() => {
+          window.location.assign("/login");
+        }, 3000);
       })
       .catch((error) => {
         console.log(error.response);
         swal({
           icon: "error",
-          title: "Invalid input!",
+          title: `${error.response.data.data}`,
           showConfirmationButton: false,
           confirmButtonColor: "#000000",
         });
@@ -103,15 +108,6 @@ class FormRegister extends Component {
                         placeholder="Password"
                         onChange={(e) =>
                           this.setState({ password: e.target.value })
-                        }
-                      />
-                      <InputForm
-                        type="text"
-                        name="roles_id"
-                        value={this.state.roles_id}
-                        placeholder="Roles ID"
-                        onChange={(e) =>
-                          this.setState({ roles_id: e.target.value })
                         }
                       />
                     </FormGroup>
