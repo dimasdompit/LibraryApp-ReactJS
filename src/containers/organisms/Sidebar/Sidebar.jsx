@@ -36,7 +36,11 @@ export default class Sidebar extends Component {
               </NavItem>
               <NavItem className={Styles.homeItems}>
                 <NavLink href="#" className={Styles.homeItemsName}>
-                  <ModalAdd text="Add Book" />
+                  <ModalAdd
+                    text="Add Book"
+                    genre={this.props.genre}
+                    author={this.props.author}
+                  />
                   {/* Add Book */}
                 </NavLink>
                 <Link to="/login">

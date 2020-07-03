@@ -31,8 +31,8 @@ class ModalAdd extends Component {
       title: "",
       image: "",
       description: "",
-      genre_id: "",
-      author_id: "",
+      genre: [],
+      author: "",
       status: "",
     };
   }
@@ -91,6 +91,7 @@ class ModalAdd extends Component {
   };
 
   render() {
+    // console.log(this.props);
     // const { redirect } = this.state;
     // // console.log(redirect);
 
@@ -163,35 +164,68 @@ class ModalAdd extends Component {
               </Row>
               <Row>
                 <Col md="3" className="mt-2">
-                  <Label>Author ID</Label>
+                  <Label>Author</Label>
                 </Col>
                 <Col md="9">
                   <FormGroup>
-                    <Input
+                    {/* <Input
                       type="text"
-                      value={this.state.author_id}
+                      value={this.state.author}
                       onChange={(e) =>
-                        this.setState({ author_id: e.target.value })
+                        this.setState({ author: e.target.value })
                       }
                       placeholder="1"
-                    />
+                    /> */}
+                    <Input
+                      type="select"
+                      name="author"
+                      id="author"
+                      onChange={(e) =>
+                        this.setState({ author: e.target.value })
+                      }
+                    >
+                      {this.props.author.map((author) => {
+                        return (
+                          <option
+                            key={author.author_id}
+                            value={author.author_id}
+                          >
+                            {author.author_name}
+                          </option>
+                        );
+                      })}
+                    </Input>
                   </FormGroup>
                 </Col>
               </Row>
               <Row>
                 <Col md="3" className="mt-2">
-                  <Label>Genre ID</Label>
+                  <Label>Genre</Label>
                 </Col>
                 <Col md="9">
                   <FormGroup>
-                    <Input
+                    {/* <Input
                       type="text"
                       value={this.state.genre_id}
                       onChange={(e) =>
                         this.setState({ genre_id: e.target.value })
                       }
                       placeholder="1"
-                    />
+                    /> */}
+                    <Input
+                      type="select"
+                      name="genre"
+                      id="genre"
+                      onChange={(e) => this.setState({ genre: e.target.value })}
+                    >
+                      {this.props.genre.map((genre) => {
+                        return (
+                          <option key={genre.genre_id} value={genre.genre_id}>
+                            {genre.genre_name}
+                          </option>
+                        );
+                      })}
+                    </Input>
                   </FormGroup>
                 </Col>
               </Row>

@@ -176,7 +176,7 @@ class Home extends Component {
           <Row className={Styles.homeDashboard}>
             <Col md="3" sm="3" className={Styles.homeSidebar}>
               {/* ===== SIDEBAR AREA ===== */}
-              <Sidebar />
+              <Sidebar genre={this.state.genre} author={this.state.author} />
             </Col>
             <Col md="9" sm="9" className={Styles.homeBody}>
               <Container fluid>
