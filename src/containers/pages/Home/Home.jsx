@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+// import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
+import { connect } from "react-redux";
 import {
   Container,
   Row,
@@ -37,12 +38,11 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: false,
       search: "",
       books: [],
-      filteredData: [],
+      genre: [],
+      author: [],
       isOpen: false,
-      genre: "genre",
     };
   }
 
@@ -92,9 +92,15 @@ class Home extends Component {
       });
   };
 
+  /* ======== GET ALL BOOKS ========= */
   getAllBooks = () => {
     let token = localStorage.getItem("token");
-    let refreshToken = localStorage.getItem("refreshToken");
+    // let refreshToken = localStorage.getItem("refreshToken");
+
+    /* REDUX CONFIG TOKEN */
+    // const token = this.props.auth.data.token;
+    /* ================= */
+
     axios({
       method: "GET",
       url: "http://localhost:3000/books",
@@ -106,97 +112,64 @@ class Home extends Component {
         console.log(response.data);
         this.setState({
           books: response.data.data,
-          // isLoggedIn: true,
         });
       })
       .catch((error) => {
         console.log(error.response);
         window.location.pathname = "/login";
       });
-
-    // axios.interceptors.response.use(
-    //   function (response) {
-    //     return response;
-    //   },
-    //   function (error) {
-    //     const originalRequest = error.config;
-    //     if (error.response.status === 401 && !originalRequest._retry) {
-    //       originalRequest._retry = true;
-
-    //       return axios
-    //         .get("http://localhost:3000/auth/refreshToken", {
-    //           headers: { Authorization: refreshToken },
-    //         })
-    //         .then((responseData) => {
-    //           // console.log(responseData.data.token);
-    //           localStorage.setItem("token", responseData.data.data.token);
-    //           localStorage.setItem(
-    //             "refreshToken",
-    //             responseData.data.data.refreshToken
-    //           );
-    //           let token = localStorage.getItem("token");
-    //           axios.defaults.headers.common["Authorization"] = token;
-    //           originalRequest.headers["Authorization"] = token;
-    //           return axios(originalRequest);
-    //         })
-    //         .catch(function (error) {
-    //           console.log(error);
-    //           localStorage.setItem("token", undefined);
-    //           localStorage.setItem("refreshToken", undefined);
-    //           window.location.pathname = "/login";
-    //         });
-    //     }
-    //     return Promise.reject(error);
-    //   }
-    // );
   };
 
-  // getBooksBySearch = (event) => {
-  // event.preventDefault();
-  // const keyword = event.target.value;
-  // const search = {
-  //   title: keyword,
-  //   author: keyword,
-  //   genre: keyword,
-  // };
-  // const params = Object.keys(search)
-  //   .map((key) => key + "=" + search[key])
-  //   .join("&");
-  // console.log(params);
-  //   const token = localStorage.getItem("token");
-  //   axios({
-  //     method: "GET",
-  //     url: `localhost:3000/books/?search=${keyword}`,
-  //     headers: {
-  //       Authorization: token,
-  //     },
-  //   })
-  //     .then((response) => {
-  //       this.setState({
-  //         books: response.data.data,
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+  /* =========== GET ALL GENRE ============ */
+  getAllGenre = () => {
+    let token = localStorage.getItem("token");
+    axios({
+      method: "GET",
+      url: "http://localhost:3000/genre",
+      headers: {
+        Authorization: token,
+      },
+    })
+      .then((response) => {
+        console.log(response.data);
+        this.setState({
+          genre: response.data.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  };
 
-  // componentWillMount() {
-  //   this.setState({
-  //     isLoggedIn: true,
-  //   });
-  // }
+  /* =========== GET ALL AUTHOR ============ */
+  getAllAuthor = () => {
+    let token = localStorage.getItem("token");
+    axios({
+      method: "GET",
+      url: "http://localhost:3000/author",
+      headers: {
+        Authorization: token,
+      },
+    })
+      .then((response) => {
+        console.log(response.data);
+        this.setState({
+          author: response.data.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  };
 
   componentDidMount() {
     this.getAllBooks();
-    // this.getBooksBySearch();
+    this.getAllGenre();
+    this.getAllAuthor();
   }
 
   render() {
-    // console.log(this.state.isLoggedIn);
-    // if (this.props.isLoggedIn !== true) {
-    //   return <Redirect to="/login" />;
-    // } else {
+    // console.log(this.props.auth.data);
     return (
       <>
         <Container fluid>
@@ -262,3 +235,9 @@ class Home extends Component {
 }
 
 export default Home;
+
+// const mapStateToProps = (state) => ({
+//   auth: state.auth,
+// });
+
+// export default connect(mapStateToProps)(Home);

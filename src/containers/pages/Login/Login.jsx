@@ -3,26 +3,29 @@ import { Row, Col, Container, Form, FormGroup } from "reactstrap";
 import { Link, Redirect } from "react-router-dom";
 
 import axios from "axios";
+import swal from "sweetalert";
+import { login } from "../../../redux/actions/auth";
+import { connect } from "react-redux";
 
 // Components
 // import LoadingScreen from "../../organisms/Loading/Loading";
-import LoginBanner from "../../organisms/Login/LoginBanner";
 // import LoginForm from "../../organisms/Login/LoginForm";
+// import InputLoginGroup from "../../../components/molecules/InputLoginGroup";
+import LoginBanner from "../../organisms/Login/LoginBanner";
 import Title from "../../../components/atoms/headings/Title";
 import Text1 from "../../../components/atoms/texts/Text1";
-// import InputLoginGroup from "../../../components/molecules/InputLoginGroup";
 import InputForm from "../../../components/atoms/forms/InputForm";
 import MainButton from "../../../components/atoms/buttons/MainButton";
 import ButtonOutline from "../../../components/atoms/buttons/ButtonOutline";
 import Terms from "../../../components/atoms/texts/Terms";
 
-import swal from "sweetalert";
 import Logo from "../../../assets/images/bookshelf.png";
 import StylesForm from "../../../styles/organism/LoginForm.module.css";
 import CheckBox from "../../../components/atoms/forms/CheckBox";
 
 // CSS Login Global Styles
 import Styles from "../../../styles/pages/Login/Login.module.css";
+// import auth from "../../../redux/reducers/auth";
 
 class FormLogin extends Component {
   constructor(props) {
@@ -38,6 +41,16 @@ class FormLogin extends Component {
 
   handleLogin = (event) => {
     event.preventDefault();
+    /* USING REDUX CONFIG */
+    // console.log(this.props.auth);
+    // const data = {
+    //   username: this.state.username,
+    //   password: this.state.password,
+    // };
+    // this.props.login(data).then(() => {
+    //   this.props.history.push("/");
+    // });
+
     axios({
       method: "POST",
       url: "http://localhost:3000/auth/login",
@@ -142,3 +155,11 @@ class FormLogin extends Component {
 }
 
 export default FormLogin;
+
+// const mapStateToProps = (state) => ({
+//   auth: state.auth,
+// });
+
+// const mapDispatchToProps = { login };
+
+// export default connect(mapStateToProps, mapDispatchToProps)(FormLogin);
