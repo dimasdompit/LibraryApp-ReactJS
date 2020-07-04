@@ -60,12 +60,12 @@ class FormLogin extends Component {
       },
     })
       .then((response) => {
+        console.log(response);
         localStorage.setItem("token", response.data.data.token);
         localStorage.setItem("refreshToken", response.data.data.refreshToken);
         this.setState({
           redirect: true,
           isLoggedIn: true,
-          // isLoading: true,
         });
         swal({
           icon: "success",
@@ -85,6 +85,10 @@ class FormLogin extends Component {
       });
   };
 
+  // componentDidMount() {
+  //   // this.handleLogin();
+  // }
+
   render() {
     const { redirect } = this.state;
 
@@ -98,7 +102,7 @@ class FormLogin extends Component {
           <Container fluid>
             <Row>
               <Col md="8" className={Styles.headerLogin}>
-                <LoginBanner />
+                <LoginBanner username={this.state.username} />
               </Col>
               <Col md="4">
                 {/* <LoginForm /> */}

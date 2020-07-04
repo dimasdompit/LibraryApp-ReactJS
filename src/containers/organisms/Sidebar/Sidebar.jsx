@@ -34,20 +34,24 @@ export default class Sidebar extends Component {
                   History
                 </NavLink>
               </NavItem>
-              <NavItem className={Styles.homeItems}>
-                <NavLink href="#" className={Styles.homeItemsName}>
-                  <ModalAdd
-                    text="Add Book"
-                    genre={this.props.genre}
-                    author={this.props.author}
-                    status={this.props.status}
-                  />
-                  {/* Add Book */}
-                </NavLink>
-                <Link to="/login">
-                  <div className={Styles.homeItemsLogout}>Log Out</div>
-                </Link>
-              </NavItem>
+              {this.props.roles === "admin" || this.props.roles === "staff" ? (
+                <NavItem className={Styles.homeItems}>
+                  <NavLink href="#" className={Styles.homeItemsName}>
+                    <ModalAdd
+                      text="Add Book"
+                      genre={this.props.genre}
+                      author={this.props.author}
+                      status={this.props.status}
+                    />
+                  </NavLink>
+                </NavItem>
+              ) : (
+                ""
+              )}
+
+              <Link to="/login">
+                <div className={Styles.homeItemsLogout}>Log Out</div>
+              </Link>
             </Nav>
           </Col>
         </Row>

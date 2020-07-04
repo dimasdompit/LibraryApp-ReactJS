@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 import { connect } from "react-redux";
 import {
   Container,
@@ -39,6 +40,9 @@ class Home extends Component {
     super(props);
     this.state = {
       search: "",
+      id: "",
+      username: "",
+      roles: "",
       books: [],
       genre: [],
       author: [],
@@ -94,6 +98,18 @@ class Home extends Component {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  checkAuth = () => {
+    const token = localStorage.getItem("token");
+    const decoded = jwtDecode(token);
+    console.log(decoded.roles);
+    this.setState({
+      ...this.state,
+      id: decoded.id,
+      username: decoded.username,
+      roles: decoded.roles,
+    });
   };
 
   /* ======== GET ALL BOOKS ========= */
@@ -167,13 +183,13 @@ class Home extends Component {
   };
 
   componentDidMount() {
+    this.checkAuth();
     this.getAllBooks();
     this.getAllGenre();
     this.getAllAuthor();
   }
 
   render() {
-    // console.log(this.props.auth.data);
     return (
       <>
         <Container fluid>
@@ -184,6 +200,8 @@ class Home extends Component {
                 genre={this.state.genre}
                 author={this.state.author}
                 status={this.state.status}
+                username={this.state.username}
+                roles={this.state.roles}
               />
             </Col>
             <Col md="9" sm="9" className={Styles.homeBody}>
