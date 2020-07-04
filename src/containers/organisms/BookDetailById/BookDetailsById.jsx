@@ -3,6 +3,7 @@ import { Row, Col, Container, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -20,6 +21,7 @@ class BookDetailsById extends Component {
     this.state = {
       authors: [],
       genres: [],
+      roles: "",
     };
   }
 
@@ -61,6 +63,17 @@ class BookDetailsById extends Component {
       .catch((error) => {
         console.log(error.response);
       });
+  };
+
+  /* ======== CHECK AUTH ======= */
+  checkAuth = () => {
+    const token = localStorage.getItem("token");
+    const decoded = jwtDecode(token);
+    console.log(decoded.roles);
+    this.setState({
+      ...this.state,
+      roles: decoded.roles,
+    });
   };
 
   handleBorrowBooks = (event) => {
@@ -140,6 +153,7 @@ class BookDetailsById extends Component {
   };
 
   componentDidMount() {
+    this.checkAuth();
     this.getAllAuthor();
     this.getAllGenre();
   }
@@ -166,28 +180,38 @@ class BookDetailsById extends Component {
                   </section>
                 </Link>
                 <section className={Styles.detailLink}>
-                  <span className={Styles.detailLink}>
-                    <ModalEdit
-                      text="Edit"
-                      className={Styles.detailModalEdit}
-                      title={this.props.title}
-                      image={this.props.image}
-                      description={this.props.description}
-                      genre={this.props.genre}
-                      genres={this.state.genres}
-                      author={this.props.author}
-                      authors={this.state.authors}
-                      status={this.props.status}
-                      id={this.props.id}
-                    />
-                  </span>
-                  <span className={Styles.detailLink}>
-                    <ModalDelete
-                      text="Delete"
-                      id={this.props.id}
-                      title={this.props.title}
-                    />
-                  </span>
+                  {this.state.roles === "admin" ||
+                  this.state.roles === "staff" ? (
+                    <span className={Styles.detailLink}>
+                      <ModalEdit
+                        text="Edit"
+                        className={Styles.detailModalEdit}
+                        title={this.props.title}
+                        image={this.props.image}
+                        description={this.props.description}
+                        genre={this.props.genre}
+                        genres={this.state.genres}
+                        author={this.props.author}
+                        authors={this.state.authors}
+                        status={this.props.status}
+                        id={this.props.id}
+                      />
+                    </span>
+                  ) : (
+                    ""
+                  )}
+
+                  {this.state.roles === "admin" ? (
+                    <span className={Styles.detailLink}>
+                      <ModalDelete
+                        text="Delete"
+                        id={this.props.id}
+                        title={this.props.title}
+                      />
+                    </span>
+                  ) : (
+                    ""
+                  )}
                 </section>
               </section>
             </section>
