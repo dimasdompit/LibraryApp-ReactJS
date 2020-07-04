@@ -113,7 +113,7 @@ class Home extends Component {
       },
     })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.setState({
           books: response.data.data,
         });
@@ -135,7 +135,7 @@ class Home extends Component {
       },
     })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.setState({
           genre: response.data.data,
         });
@@ -156,7 +156,7 @@ class Home extends Component {
       },
     })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.setState({
           author: response.data.data,
         });

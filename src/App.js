@@ -5,7 +5,7 @@ import "moment-timezone";
 // import "slick-carousel/slick/slick-theme.css";
 import Login from "./containers/pages/Login/Login";
 import Register from "./containers/pages/Register/Register";
-import BookDetails from "./containers/pages/BookDetails/BookDetail";
+import BookDetails from "./containers/pages/BookDetails/BookDetails";
 import Home from "./containers/pages/Home/Home";
 
 import "./App.css";

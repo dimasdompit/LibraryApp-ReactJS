@@ -90,10 +90,6 @@ class ModalAdd extends Component {
   };
 
   render() {
-    // console.log(this.props);
-    // const { redirect } = this.state;
-    // // console.log(redirect);
-
     return (
       <div>
         <div onClick={this.toggle}>{this.props.text}</div>
@@ -214,14 +210,6 @@ class ModalAdd extends Component {
                 </Col>
                 <Col md="9">
                   <FormGroup>
-                    {/* <Input
-                      type="text"
-                      value={this.state.status}
-                      onChange={(e) =>
-                        this.setState({ status: e.target.value })
-                      }
-                      placeholder="Available / Not Available"
-                    /> */}
                     <Input
                       type="select"
                       name="status"

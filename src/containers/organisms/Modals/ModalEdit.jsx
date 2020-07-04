@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import {
@@ -34,6 +33,7 @@ class ModalEdit extends Component {
       description: this.props.description,
       genre: this.props.genre,
       author: this.props.author,
+      status: this.props.status,
     };
   }
 
@@ -52,8 +52,9 @@ class ModalEdit extends Component {
     formData.append("title", this.state.title);
     formData.append("image", this.state.image[0]);
     formData.append("description", this.state.description);
-    formData.append("genre_id", this.state.genre_id);
-    formData.append("author_id", this.state.author_id);
+    formData.append("genre_id", this.state.genre);
+    formData.append("author_id", this.state.author);
+    formData.append("status", this.state.status);
 
     axios({
       method: "PUT",
@@ -154,61 +155,52 @@ class ModalEdit extends Component {
               </Row>
               <Row>
                 <Col md="3" className="mt-2">
-                  <Label>Author ID</Label>
+                  <Label>Author</Label>
                 </Col>
                 <Col md="9">
                   <FormGroup>
                     <Input
-                      type="text"
-                      value={this.state.author}
+                      type="select"
+                      name="author"
+                      id="author_id"
                       onChange={(e) =>
                         this.setState({ author: e.target.value })
                       }
-                      placeholder="1"
-                    />
-                    {/* <Input type="select" name="author" id="exampleSelect">
-                      {this.state.author.map((author) => {
+                    >
+                      {this.props.authors.map((author) => {
                         return (
-                          <option key={author.id} value={author.id}>
-                            {author.id}
+                          <option
+                            key={author.author_id}
+                            value={author.author_id}
+                          >
+                            {author.author_name}
                           </option>
                         );
                       })}
-                    </Input> */}
+                    </Input>
                   </FormGroup>
                 </Col>
               </Row>
               <Row>
                 <Col md="3" className="mt-2">
-                  <Label>Genre ID</Label>
+                  <Label>Genre</Label>
                 </Col>
                 <Col md="9">
                   <FormGroup>
                     <Input
-                      type="text"
-                      value={this.state.genre}
-                      onChange={(e) =>
-                        this.setState({ genre_id: e.target.value })
-                      }
-                      placeholder="1"
-                    />
-                  </FormGroup>
-                </Col>
-              </Row>
-              <Row>
-                <Col md="3" className="mt-2">
-                  <Label>Status</Label>
-                </Col>
-                <Col md="9">
-                  <FormGroup>
-                    <Input
-                      type="text"
-                      value={this.state.status}
-                      onChange={(e) =>
-                        this.setState({ status: e.target.value })
-                      }
-                      placeholder="Available / Not Available"
-                    />
+                      type="select"
+                      name="genre"
+                      id="genre"
+                      onChange={(e) => this.setState({ genre: e.target.value })}
+                    >
+                      {this.props.genres.map((genre) => {
+                        return (
+                          <option key={genre.genre_id} value={genre.genre_id}>
+                            {genre.genre_name}
+                          </option>
+                        );
+                      })}
+                    </Input>
                   </FormGroup>
                 </Col>
               </Row>
