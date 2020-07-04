@@ -94,10 +94,6 @@ class ModalAdd extends Component {
     // const { redirect } = this.state;
     // // console.log(redirect);
 
-    // if (redirect) {
-    //   return <Redirect to={`/details/${this.props.id}`} />;
-    // }
-
     return (
       <div>
         <div onClick={this.toggle}>{this.props.text}</div>
@@ -218,14 +214,30 @@ class ModalAdd extends Component {
                 </Col>
                 <Col md="9">
                   <FormGroup>
-                    <Input
+                    {/* <Input
                       type="text"
                       value={this.state.status}
                       onChange={(e) =>
                         this.setState({ status: e.target.value })
                       }
                       placeholder="Available / Not Available"
-                    />
+                    /> */}
+                    <Input
+                      type="select"
+                      name="status"
+                      id="status"
+                      onChange={(e) =>
+                        this.setState({ status: e.target.value })
+                      }
+                    >
+                      {this.props.status.map((status) => {
+                        return (
+                          <option key={status.id} value={status.name}>
+                            {status.name}
+                          </option>
+                        );
+                      })}
+                    </Input>
                   </FormGroup>
                 </Col>
               </Row>

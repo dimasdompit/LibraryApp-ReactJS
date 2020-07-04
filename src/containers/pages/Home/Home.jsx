@@ -42,6 +42,10 @@ class Home extends Component {
       books: [],
       genre: [],
       author: [],
+      status: [
+        { id: 1, name: "Available" },
+        { id: 2, name: "Not Available" },
+      ],
       isOpen: false,
     };
   }
@@ -176,7 +180,11 @@ class Home extends Component {
           <Row className={Styles.homeDashboard}>
             <Col md="3" sm="3" className={Styles.homeSidebar}>
               {/* ===== SIDEBAR AREA ===== */}
-              <Sidebar genre={this.state.genre} author={this.state.author} />
+              <Sidebar
+                genre={this.state.genre}
+                author={this.state.author}
+                status={this.state.status}
+              />
             </Col>
             <Col md="9" sm="9" className={Styles.homeBody}>
               <Container fluid>

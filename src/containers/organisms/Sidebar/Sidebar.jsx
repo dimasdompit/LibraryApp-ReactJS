@@ -40,6 +40,7 @@ export default class Sidebar extends Component {
                     text="Add Book"
                     genre={this.props.genre}
                     author={this.props.author}
+                    status={this.props.status}
                   />
                   {/* Add Book */}
                 </NavLink>
