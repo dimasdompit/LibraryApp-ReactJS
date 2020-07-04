@@ -34,7 +34,6 @@ class ModalEdit extends Component {
       description: this.props.description,
       genre: this.props.genre,
       author: this.props.author,
-      status: this.props.status,
     };
   }
 
@@ -55,7 +54,6 @@ class ModalEdit extends Component {
     formData.append("description", this.state.description);
     formData.append("genre_id", this.state.genre_id);
     formData.append("author_id", this.state.author_id);
-    formData.append("status", this.state.status);
 
     axios({
       method: "PUT",
@@ -91,17 +89,6 @@ class ModalEdit extends Component {
   };
 
   render() {
-    // console.log(this.state.author);
-    // console.log(this.state.title);
-    // console.log(this.state.genre);
-
-    const { redirect } = this.state;
-    // console.log(redirect);
-
-    if (redirect) {
-      return <Redirect to={`/details/${this.props.id}`} />;
-    }
-
     return (
       <div>
         <div onClick={this.toggle}>{this.props.text}</div>

@@ -31,7 +31,7 @@ class ModalAdd extends Component {
       title: "",
       image: "",
       description: "",
-      genre: [],
+      genre: "",
       author: "",
       status: "",
     };
@@ -51,10 +51,9 @@ class ModalAdd extends Component {
     let formData = new FormData();
     formData.append("title", this.state.title);
     formData.append("image", this.state.image[0]);
-    console.log(this.state.image[0]);
     formData.append("description", this.state.description);
-    formData.append("genre_id", this.state.genre_id);
-    formData.append("author_id", this.state.author_id);
+    formData.append("genre_id", this.state.genre);
+    formData.append("author_id", this.state.author);
     formData.append("status", this.state.status);
 
     axios({
@@ -168,14 +167,6 @@ class ModalAdd extends Component {
                 </Col>
                 <Col md="9">
                   <FormGroup>
-                    {/* <Input
-                      type="text"
-                      value={this.state.author}
-                      onChange={(e) =>
-                        this.setState({ author: e.target.value })
-                      }
-                      placeholder="1"
-                    /> */}
                     <Input
                       type="select"
                       name="author"
@@ -204,14 +195,6 @@ class ModalAdd extends Component {
                 </Col>
                 <Col md="9">
                   <FormGroup>
-                    {/* <Input
-                      type="text"
-                      value={this.state.genre_id}
-                      onChange={(e) =>
-                        this.setState({ genre_id: e.target.value })
-                      }
-                      placeholder="1"
-                    /> */}
                     <Input
                       type="select"
                       name="genre"

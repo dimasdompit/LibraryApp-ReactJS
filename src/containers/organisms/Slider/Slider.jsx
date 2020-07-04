@@ -16,16 +16,17 @@ export default class HomeSlider extends Component {
   }
 
   getAllBooks = () => {
+    const categories = ["title", "genre", "author", "created_at", "status"];
+    const category = categories[Math.floor(Math.random() * categories.length)];
     const token = localStorage.getItem("token");
     axios({
       method: "GET",
-      url: "http://localhost:3000/books/?sortBy=genre&sortType=ASC&limit=5",
+      url: `http://localhost:3000/books/?sortBy=${category}&sortType=ASC&limit=5`,
       headers: {
         Authorization: token,
       },
     })
       .then((response) => {
-        // console.log(response);
         this.setState({
           books: response.data.data,
         });
