@@ -7,6 +7,7 @@ import {
   Container,
   Row,
   Col,
+  Button,
   // Collapse,
   // Nav,
   // Navbar,
@@ -19,14 +20,16 @@ import {
   // Input,
   // InputGroup,
   // InputGroupAddon,
-  // Button,
   // Form,
 } from "reactstrap";
 import Styles from "../../../styles/pages/Home/Home.module.css";
 // import LoadingScreen from "../../organisms/Loading/Loading";
 
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faAngleDoubleLeft,
+  faAngleDoubleRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 import Topnav from "../../organisms/Navbar/Navbar";
 import Sidebar from "../../organisms/Sidebar/Sidebar";
@@ -50,6 +53,11 @@ class Home extends Component {
         { id: 1, name: "Available" },
         { id: 2, name: "Not Available" },
       ],
+      pagination: {
+        page: 1,
+        limit: 6,
+        totalPage: [],
+      },
       isOpen: false,
     };
   }
@@ -103,7 +111,6 @@ class Home extends Component {
   checkAuth = () => {
     const token = localStorage.getItem("token");
     const decoded = jwtDecode(token);
-    console.log(decoded.roles);
     this.setState({
       ...this.state,
       id: decoded.id,
@@ -114,30 +121,66 @@ class Home extends Component {
 
   /* ======== GET ALL BOOKS ========= */
   getAllBooks = () => {
-    let token = localStorage.getItem("token");
-    // let refreshToken = localStorage.getItem("refreshToken");
-
     /* REDUX CONFIG TOKEN */
     // const token = this.props.auth.data.token;
     /* ================= */
+    let token = localStorage.getItem("token");
+
+    const pagination = {
+      limit: this.state.pagination.limit,
+      page: this.state.pagination.page,
+    };
+
+    const qs = Object.keys(pagination)
+      .map((key) => key + "=" + pagination[key])
+      .join("&");
 
     axios({
       method: "GET",
-      url: "http://localhost:3000/books",
+      url: `http://localhost:3000/books/?${qs}`,
       headers: {
         Authorization: token,
       },
     })
       .then((response) => {
-        // console.log(response.data);
+        let totalData = response.data.data["COUNT(*)"];
+        const totalPage = totalData / this.state.pagination.limit;
+
+        let pages = [];
+        for (let i = 0; i < totalPage; i++) {
+          pages.push(i);
+        }
+
         this.setState({
-          books: response.data.data,
+          ...this.state,
+          books: response.data.data.result,
+          pagination: {
+            page: this.state.pagination.page,
+            limit: this.state.pagination.limit,
+            totalPage: pages,
+          },
         });
       })
       .catch((error) => {
         console.log(error.response);
-        window.location.pathname = "/login";
+        // window.location.pathname = "/login";
       });
+  };
+
+  getBooksPerPage = (page) => {
+    this.setState(
+      {
+        ...this.state,
+        pagination: {
+          page: page,
+          limit: this.state.pagination.limit,
+          totalPage: this.state.pagination.totalPage,
+        },
+      },
+      () => {
+        this.getAllBooks();
+      }
+    );
   };
 
   /* =========== GET ALL GENRE ============ */
@@ -248,6 +291,49 @@ class Home extends Component {
                         />
                       );
                     })}
+                  </Row>
+                  <Row className="d-flex justify-content-center mt-5">
+                    {/* PAGINTATION */}
+                    <Button
+                      color="warning"
+                      className="mr-1"
+                      onClick={() =>
+                        this.getBooksPerPage(this.state.pagination.page - 1)
+                      }
+                      disabled={this.state.pagination.page === 1 ? true : false}
+                    >
+                      <FontAwesomeIcon icon={faAngleDoubleLeft} />
+                    </Button>
+                    {this.state.pagination.totalPage.map((page) => {
+                      return (
+                        <Button
+                          className="mr-1 ml-1"
+                          key={page}
+                          color="warning"
+                          onClick={() => {
+                            this.getBooksPerPage(page + 1);
+                          }}
+                        >
+                          {page + 1}
+                        </Button>
+                      );
+                    })}
+
+                    <Button
+                      color="warning"
+                      className="ml-1"
+                      onClick={() =>
+                        this.getBooksPerPage(this.state.pagination.page + 1)
+                      }
+                      disabled={
+                        this.state.pagination.page ===
+                        this.state.pagination.totalPage.length
+                          ? true
+                          : false
+                      }
+                    >
+                      <FontAwesomeIcon icon={faAngleDoubleRight} />
+                    </Button>
                   </Row>
                 </div>
               </Container>

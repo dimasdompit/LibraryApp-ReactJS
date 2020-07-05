@@ -21,14 +21,14 @@ export default class HomeSlider extends Component {
     const token = localStorage.getItem("token");
     axios({
       method: "GET",
-      url: `http://localhost:3000/books/?sortBy=${category}&sortType=ASC&limit=5`,
+      url: `http://localhost:3000/books/?sortBy=${category}&sortType=ASC&limit=5&page=1`,
       headers: {
         Authorization: token,
       },
     })
       .then((response) => {
         this.setState({
-          books: response.data.data,
+          books: response.data.data.result,
         });
       })
       .catch((error) => {

@@ -69,7 +69,6 @@ class BookDetailsById extends Component {
   checkAuth = () => {
     const token = localStorage.getItem("token");
     const decoded = jwtDecode(token);
-    console.log(decoded.roles);
     this.setState({
       ...this.state,
       roles: decoded.roles,
