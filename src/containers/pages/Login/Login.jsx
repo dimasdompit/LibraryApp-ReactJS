@@ -8,9 +8,6 @@ import { login } from "../../../redux/actions/auth";
 import { connect } from "react-redux";
 
 // Components
-// import LoadingScreen from "../../organisms/Loading/Loading";
-// import LoginForm from "../../organisms/Login/LoginForm";
-// import InputLoginGroup from "../../../components/molecules/InputLoginGroup";
 import LoginBanner from "../../organisms/Login/LoginBanner";
 import Title from "../../../components/atoms/headings/Title";
 import Text1 from "../../../components/atoms/texts/Text1";
@@ -25,7 +22,7 @@ import CheckBox from "../../../components/atoms/forms/CheckBox";
 
 // CSS Login Global Styles
 import Styles from "../../../styles/pages/Login/Login.module.css";
-// import auth from "../../../redux/reducers/auth";
+import auth from "../../../redux/reducers/auth";
 
 class FormLogin extends Component {
   constructor(props) {
@@ -33,7 +30,6 @@ class FormLogin extends Component {
     this.state = {
       redirect: false,
       isLoggedIn: false,
-      // isLoading: false,
       username: "",
       password: "",
     };
@@ -42,47 +38,47 @@ class FormLogin extends Component {
   handleLogin = (event) => {
     event.preventDefault();
     /* USING REDUX CONFIG */
-    // console.log(this.props.auth);
-    // const data = {
-    //   username: this.state.username,
-    //   password: this.state.password,
-    // };
-    // this.props.login(data).then(() => {
-    //   this.props.history.push("/");
-    // });
+    console.log(this.props.auth);
+    const data = {
+      username: this.state.username,
+      password: this.state.password,
+    };
+    this.props.login(data).then(() => {
+      this.props.history.push("/");
+    });
 
-    axios({
-      method: "POST",
-      url: "http://localhost:3000/auth/login",
-      data: {
-        username: this.state.username,
-        password: this.state.password,
-      },
-    })
-      .then((response) => {
-        console.log(response);
-        localStorage.setItem("token", response.data.data.token);
-        localStorage.setItem("refreshToken", response.data.data.refreshToken);
-        this.setState({
-          redirect: true,
-          isLoggedIn: true,
-        });
-        swal({
-          icon: "success",
-          title: `${response.data.data.status}`,
-          button: false,
-          timer: 2000,
-        });
-      })
-      .catch((error) => {
-        console.log(error.response);
-        swal({
-          icon: "error",
-          title: `${error.response.data.data}`,
-          showConfirmButton: false,
-          confirmButtonColor: "#000000",
-        });
-      });
+    //   axios({
+    //     method: "POST",
+    //     url: "http://localhost:3000/auth/login",
+    //     data: {
+    //       username: this.state.username,
+    //       password: this.state.password,
+    //     },
+    //   })
+    //     .then((response) => {
+    //       console.log(response);
+    //       localStorage.setItem("token", response.data.data.token);
+    //       localStorage.setItem("refreshToken", response.data.data.refreshToken);
+    //       this.setState({
+    //         redirect: true,
+    //         isLoggedIn: true,
+    //       });
+    //       swal({
+    //         icon: "success",
+    //         title: `${response.data.data.status}`,
+    //         button: false,
+    //         timer: 2000,
+    //       });
+    //     })
+    //     .catch((error) => {
+    //       console.log(error.response);
+    //       swal({
+    //         icon: "error",
+    //         title: `${error.response.data.data}`,
+    //         showConfirmButton: false,
+    //         confirmButtonColor: "#000000",
+    //       });
+    //     });
   };
 
   // componentDidMount() {
@@ -158,12 +154,12 @@ class FormLogin extends Component {
   }
 }
 
-export default FormLogin;
+// export default FormLogin;
 
-// const mapStateToProps = (state) => ({
-//   auth: state.auth,
-// });
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
 
-// const mapDispatchToProps = { login };
+const mapDispatchToProps = { login };
 
-// export default connect(mapStateToProps, mapDispatchToProps)(FormLogin);
+export default connect(mapStateToProps, mapDispatchToProps)(FormLogin);

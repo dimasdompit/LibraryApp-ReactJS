@@ -21,6 +21,10 @@ class BookDetailsById extends Component {
     this.state = {
       authors: [],
       genres: [],
+      bookId: this.props.id,
+      userId: "",
+      username: "",
+      historyStatus: "borrow",
       roles: "",
     };
   }
@@ -71,22 +75,41 @@ class BookDetailsById extends Component {
     const decoded = jwtDecode(token);
     this.setState({
       ...this.state,
+      userId: decoded.id,
+      username: decoded.username,
       roles: decoded.roles,
     });
   };
 
-  handleBorrowBooks = (event) => {
-    event.preventDefault();
+  /* ======== HANDLE BORROW BOOKS ======== */
+  handleBorrowBooks = () => {
+    // event.preventDefault();
 
     const token = localStorage.getItem("token");
-    event.preventDefault();
+    const decoded = jwtDecode(token);
+    this.setState({
+      ...this.state,
+      userId: decoded.id,
+    });
+
     const id = this.props.id;
+
+    console.log(this.state.userId);
+    console.log(this.state.bookId);
+    console.log(this.state.historyStatus);
+
+    let formData = new FormData();
+    formData.append("book_id", id);
+    formData.append("user_id", decoded.id);
+    formData.append("history_status", this.state.historyStatus);
 
     axios({
       method: "PUT",
       url: "http://localhost:3000/books/borrow/" + id,
+      data: formData,
       headers: {
         Authorization: token,
+        "Content-Type": "multipart/form-data",
       },
     })
       .then((response) => {
@@ -94,7 +117,7 @@ class BookDetailsById extends Component {
         swal({
           icon: "success",
           title: `${response.data.data}`,
-          showConfirmaButton: false,
+          showConfirmButton: false,
           timer: 3000,
         });
       })
@@ -113,43 +136,43 @@ class BookDetailsById extends Component {
       });
   };
 
-  handleReturnBooks = (event) => {
-    event.preventDefault();
+  // handleReturnBooks = (event) => {
+  //   event.preventDefault();
 
-    const token = localStorage.getItem("token");
-    event.preventDefault();
-    const id = this.props.id;
+  //   const token = localStorage.getItem("token");
+  //   event.preventDefault();
+  //   const id = this.props.id;
 
-    axios({
-      method: "PUT",
-      url: "http://localhost:3000/books/return/" + id,
-      headers: {
-        Authorization: token,
-      },
-    })
-      .then((response) => {
-        console.log(response);
-        swal({
-          icon: "success",
-          title: `${response.data.data}`,
-          showConfirmaButton: false,
-          timer: 3000,
-        });
-      })
-      .then(() => {
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
-      })
-      .catch((error) => {
-        console.log(error.response);
-        swal({
-          icon: "error",
-          title: `${error.response.data.data}`,
-          confirmButtonColor: "#000000",
-        });
-      });
-  };
+  //   axios({
+  //     method: "PUT",
+  //     url: "http://localhost:3000/books/return/" + id,
+  //     headers: {
+  //       Authorization: token,
+  //     },
+  //   })
+  //     .then((response) => {
+  //       console.log(response);
+  //       swal({
+  //         icon: "success",
+  //         title: `${response.data.data}`,
+  //         showConfirmaButton: false,
+  //         timer: 3000,
+  //       });
+  //     })
+  //     .then(() => {
+  //       setTimeout(() => {
+  //         window.location.reload();
+  //       }, 3000);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.response);
+  //       swal({
+  //         icon: "error",
+  //         title: `${error.response.data.data}`,
+  //         confirmButtonColor: "#000000",
+  //       });
+  //     });
+  // };
 
   componentDidMount() {
     this.checkAuth();
@@ -243,23 +266,21 @@ class BookDetailsById extends Component {
                     />
                   </div>
                   <div className={Styles.detailBorrow}>
-                    {this.props.status === "Available" ? (
-                      <Button
-                        onClick={this.handleBorrowBooks}
-                        color="warning"
-                        className={Styles.btnBorrow}
-                      >
-                        Borrow
-                      </Button>
-                    ) : (
-                      <Button
-                        onClick={this.handleReturnBooks}
-                        color="warning"
-                        className={Styles.btnBorrow}
-                      >
-                        Return
-                      </Button>
-                    )}
+                    <Button
+                      onClick={this.handleBorrowBooks}
+                      type="submit"
+                      color={
+                        this.props.status !== "Not Available"
+                          ? "warning"
+                          : "secondary"
+                      }
+                      className={Styles.btnBorrow}
+                      disabled={
+                        this.props.status === "Not Available" ? true : false
+                      }
+                    >
+                      Borrow
+                    </Button>
                   </div>
                 </Col>
               </Row>

@@ -4,10 +4,12 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import { connect } from "react-redux";
+
 import SliderArrow from "../../../components/molecules/SliderArrow";
 import BookSlider from "../../../components/molecules/BookSlider";
 
-export default class HomeSlider extends Component {
+class HomeSlider extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,6 +21,8 @@ export default class HomeSlider extends Component {
     const categories = ["title", "genre", "author", "created_at", "status"];
     const category = categories[Math.floor(Math.random() * categories.length)];
     const token = localStorage.getItem("token");
+    // const token = this.props.auth.data.token;
+
     axios({
       method: "GET",
       url: `http://localhost:3000/books/?sortBy=${category}&sortType=ASC&limit=5&page=1`,
@@ -72,3 +76,11 @@ export default class HomeSlider extends Component {
     );
   }
 }
+
+export default HomeSlider;
+
+// const mapStateToProps = (state) => ({
+//   auth: state.auth,
+// });
+
+// export default connect(mapStateToProps)(HomeSlider);

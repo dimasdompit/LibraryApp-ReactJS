@@ -2,9 +2,13 @@ import React, { Component } from "react";
 import { Row, Col, Nav, NavItem, NavLink } from "reactstrap";
 import Styles from "../../../styles/pages/Home/Home.module.css";
 import ModalAdd from "../../organisms/Modals/ModalAdd";
-import { Link } from "react-router-dom";
+
+import History from "../../organisms/History/History";
 
 export default class Sidebar extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <>
@@ -31,7 +35,10 @@ export default class Sidebar extends Component {
               </NavItem>
               <NavItem className={Styles.homeItems}>
                 <NavLink href="#" className={Styles.homeItemsName}>
-                  History
+                  <History
+                    userId={this.props.userId}
+                    bookId={this.props.bookId}
+                  />
                 </NavLink>
               </NavItem>
               {this.props.roles === "admin" || this.props.roles === "staff" ? (
@@ -48,10 +55,12 @@ export default class Sidebar extends Component {
               ) : (
                 ""
               )}
-
-              <Link to="/login">
-                <div className={Styles.homeItemsLogout}>Log Out</div>
-              </Link>
+              <div
+                className={Styles.homeItemsLogout}
+                onClick={this.props.onClick}
+              >
+                Log Out
+              </div>
             </Nav>
           </Col>
         </Row>

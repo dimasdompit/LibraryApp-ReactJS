@@ -47,6 +47,7 @@
 }
 
 .homeItemsLogout {
+  cursor: pointer;
   color: white;
   display: flex;
   justify-content: center;
@@ -232,4 +233,9 @@
   text-align: left;
   font-size: 15px;
   color: #424242;
+}
+
+/*  HISTORY STYLES */
+.historyStatus {
+  color: rgb(0, 177, 0);
 }

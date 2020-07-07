@@ -44,7 +44,7 @@ class ModalDelete extends Component {
         console.log(response);
         swal({
           icon: "success",
-          title: `${title} is Successfully Deleted`,
+          title: `'${title}' is Successfully Deleted`,
           showConfirmaButton: false,
           timer: 2500,
         });

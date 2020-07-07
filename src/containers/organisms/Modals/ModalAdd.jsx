@@ -96,7 +96,7 @@ class ModalAdd extends Component {
         <Modal
           isOpen={this.state.modal}
           toggle={this.toggle}
-          className={this.props.className}
+          className="modal-lg"
         >
           <ModalHeader
             toggle={this.toggle}

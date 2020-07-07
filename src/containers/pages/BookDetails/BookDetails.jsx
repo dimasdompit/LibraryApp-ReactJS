@@ -37,6 +37,7 @@ class BookDetails extends Component {
   }
 
   render() {
+    // console.log(this.props.match);
     return (
       <>
         <div className="detail-section">
