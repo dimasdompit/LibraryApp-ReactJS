@@ -17,6 +17,7 @@ import swal from "sweetalert";
 /* REDUX */
 import { connect } from "react-redux";
 import { getUserById } from "../../../redux/actions/users";
+import { getBooks, returnBooks } from "../../../redux/actions/book";
 
 import Styles from "../../../styles/pages/Home/Home.module.css";
 
@@ -68,18 +69,21 @@ class History extends Component {
     // const token = localStorage.getItem("token");
     const token = this.props.auth.data.token;
 
-    axios({
-      method: "PUT",
-      url: `http://localhost:3000/books/return/${id}`,
-      headers: {
-        Authorization: token,
-      },
-    })
+    // axios({
+    //   method: "PUT",
+    //   url: `http://localhost:3000/books/return/${id}`,
+    //   headers: {
+    //     Authorization: token,
+    //   },
+    // })
+    this.props
+      .returnBooks(token, id)
       .then((response) => {
         console.log(response);
+        // this.props.getBooks(token);
         swal({
           icon: "success",
-          title: `${response.data.data}`,
+          title: `${response.value.data.data}`,
           showConfirmaButton: false,
           timer: 3000,
         });
@@ -90,10 +94,10 @@ class History extends Component {
         }, 3000);
       })
       .catch((err) => {
-        console.log(err.response);
+        console.log(err);
         swal({
           icon: "error",
-          title: `${err.response.data.data}`,
+          title: `${err.response}`,
           confirmButtonColor: "#000000",
         });
       });
@@ -175,8 +179,9 @@ class History extends Component {
 const mapStateToProps = (state) => ({
   auth: state.auth,
   users: state.user,
+  book: state.book,
 });
 
-const mapDispatchToProps = { getUserById };
+const mapDispatchToProps = { getUserById, returnBooks };
 
 export default connect(mapStateToProps, mapDispatchToProps)(History);

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Modal, ModalHeader, ModalBody, Button } from "reactstrap";
 import axios from "axios";
 import { connect } from "react-redux";
+import { deleteBooks } from "../../../redux/actions/book";
 
 import swal from "sweetalert";
 
@@ -32,13 +33,15 @@ class ModalDelete extends Component {
     const id = this.props.id;
     const title = this.props.title;
 
-    axios({
-      method: "DELETE",
-      url: "http://localhost:3000/books/" + id,
-      headers: {
-        Authorization: token,
-      },
-    })
+    // axios({
+    //   method: "DELETE",
+    //   url: "http://localhost:3000/books/" + id,
+    //   headers: {
+    //     Authorization: token,
+    //   },
+    // })
+    this.props
+      .deleteBooks(token, id)
       .then((response) => {
         console.log(response);
         swal({
@@ -95,5 +98,9 @@ class ModalDelete extends Component {
 // export default ModalDelete;
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  book: state.book,
 });
-export default connect(mapStateToProps)(ModalDelete);
+
+const mapDispatchToProps = { deleteBooks };
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModalDelete);

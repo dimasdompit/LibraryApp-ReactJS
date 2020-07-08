@@ -96,6 +96,76 @@ const book = (state = initialState, action) => {
         isError: false,
       };
 
+    /* DELETE BOOK */
+    case "DELETEBOOK_PENDING":
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    case "DELETEBOOK_REJECTED":
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+        errorMsg: "Data Rejected!",
+      };
+    case "DELETEBOOK_FULFILLED":
+      // console.log(state.data);
+      // const newAction = action.payload.data.data.id;
+      // const result = state.data.result;
+      // const newData = result.filter((val, i) => val[i] !== newAction);
+      // console.log(newAction);
+      // console.log(result);
+      // console.log(newData);
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+      };
+
+    /* RETURN BOOK */
+    case "RETURNBOOK_PENDING":
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    case "RETURNBOOK_REJECTED":
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+        errorMsg: "Data Rejected!",
+      };
+    case "RETURNBOOK_FULFILLED":
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+      };
+
+    /* BORROW BOOKS */
+    case "BORROWBOOK_PENDING":
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    case "BORROWBOOK_REJECTED":
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+        errorMsg: "Data Rejected!",
+      };
+    case "BORROWBOOK_FULFILLED":
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+      };
+
     default:
       return state;
   }

@@ -72,7 +72,7 @@ class ModalEdit extends Component {
     // })
 
     this.props
-      .editBooks(token, formData, id)
+      .editBooks(token, id, formData)
       .then((response) => {
         this.props.getBooks(token);
         // console.log(response);

@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+
 import { connect } from "react-redux";
+import { getBooks, borrowBooks } from "../../../redux/actions/book";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -112,20 +114,23 @@ class BookDetailsById extends Component {
     formData.append("user_id", decoded.id);
     formData.append("history_status", this.state.historyStatus);
 
-    axios({
-      method: "PUT",
-      url: "http://localhost:3000/books/borrow/" + id,
-      data: formData,
-      headers: {
-        Authorization: token,
-        "Content-Type": "multipart/form-data",
-      },
-    })
+    // axios({
+    //   method: "PUT",
+    //   url: "http://localhost:3000/books/borrow/" + id,
+    //   data: formData,
+    //   headers: {
+    //     Authorization: token,
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    // })
+    this.props
+      .borrowBooks(token, id, formData)
       .then((response) => {
         console.log(response);
+        this.props.getBooks(token);
         swal({
           icon: "success",
-          title: `${response.data.data}`,
+          title: `${response.value.data.data}`,
           showConfirmButton: false,
           timer: 3000,
         });
@@ -305,6 +310,9 @@ class BookDetailsById extends Component {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  book: state.auth,
 });
 
-export default connect(mapStateToProps)(BookDetailsById);
+const mapDispatchToProps = { getBooks, borrowBooks };
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookDetailsById);
