@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import axios from "axios";
 import { connect } from "react-redux";
-import { getBooksById } from "../../../redux/actions/book";
+import { getBooks, getBooksById } from "../../../redux/actions/book";
 import BookDetailsById from "../../organisms/BookDetailById/BookDetailsById";
 
 class BookDetails extends Component {
@@ -29,6 +29,7 @@ class BookDetails extends Component {
       .getBooksById(token, id)
       .then((response) => {
         // console.log(response.data.data);
+        this.props.getBooks(token);
         this.setState({
           books: response.value.data.data,
         });
@@ -77,6 +78,6 @@ const mapStateToProps = (state) => ({
   book: state.book,
 });
 
-const mapDispatchToProps = { getBooksById };
+const mapDispatchToProps = { getBooks, getBooksById };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookDetails);

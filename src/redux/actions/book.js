@@ -40,3 +40,18 @@ export const addBooks = (token, data) => {
     }),
   };
 };
+
+export const editBooks = (token, data, id) => {
+  return {
+    type: "PUTBOOK",
+    payload: axios({
+      method: "PUT",
+      url: "http://localhost:3000/books/" + id,
+      data: data,
+      headers: {
+        Authorization: token,
+        "Content-Type": "multipart/form-data",
+      },
+    }),
+  };
+};

@@ -80,22 +80,22 @@ class Home extends Component {
       .map((key) => key + "=" + sorted[key])
       .join("&");
 
-    axios({
-      method: "GET",
-      url: `http://localhost:3000/books/?${qs}`,
-      headers: {
-        Authorization: token,
-      },
-    })
-      /* GET ALL BOOKS REDUX */
-      // this.props
-      //   .getBook(token, qs)
+    // axios({
+    //   method: "GET",
+    //   url: `http://localhost:3000/books/?${qs}`,
+    //   headers: {
+    //     Authorization: token,
+    //   },
+    // })
+    /* GET ALL BOOKS REDUX */
+    this.props
+      .getBooks(token, qs)
       .then((response) => {
         // const data = response.value.data.data.result;
         // console.log(data);
-        this.setState({
-          books: response.data.data.result,
-        });
+        // this.setState({
+        //   books: response.data.data.result,
+        // });
       })
       .catch((error) => {
         console.log(error);
@@ -115,21 +115,22 @@ class Home extends Component {
       .map((key) => key + "=" + search[key])
       .join("&");
 
-    axios({
-      method: "GET",
-      url: `http://localhost:3000/books/?${qs}`,
-      headers: {
-        Authorization: token,
-      },
-    })
-      // this.props
-      //   .getBook(token, qs)
+    // axios({
+    //   method: "GET",
+    //   url: `http://localhost:3000/books/?${qs}`,
+    //   headers: {
+    //     Authorization: token,
+    //   },
+    // })
+    this.props
+      .getBooks(token, qs)
       .then((response) => {
+        // console.log(response);
         // const data = response.value.data.data.result;
         // console.log(data);
-        this.setState({
-          books: response.data.data.result,
-        });
+        // this.setState({
+        //   books: response.data.data.result,
+        // });
       })
       .catch((error) => {
         console.log(error);

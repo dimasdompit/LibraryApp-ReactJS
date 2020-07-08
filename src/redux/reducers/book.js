@@ -51,7 +51,7 @@ const book = (state = initialState, action) => {
         ...state,
         isLoading: false,
         isError: false,
-        data: action.payload.data.data,
+        // data: action.payload.data.data,
       };
 
     /* POST BOOK */
@@ -69,6 +69,27 @@ const book = (state = initialState, action) => {
         errorMsg: "Data Rejected!",
       };
     case "POSTBOOK_FULFILLED":
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+      };
+
+    /* PUT BOOK */
+    case "PUTBOOK_PENDING":
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    case "PUTBOOK_REJECTED":
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+        errorMsg: "Data Rejected!",
+      };
+    case "PUTBOOK_FULFILLED":
       return {
         ...state,
         isLoading: false,

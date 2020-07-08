@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+
 import { connect } from "react-redux";
+import { editBooks, getBooks } from "../../../redux/actions/book";
 // import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import {
@@ -59,17 +61,21 @@ class ModalEdit extends Component {
     formData.append("author_id", this.state.author);
     formData.append("status", this.state.status);
 
-    axios({
-      method: "PUT",
-      url: "http://localhost:3000/books/" + id,
-      data: formData,
-      headers: {
-        Authorization: token,
-        "Content-Type": "multipart/form-data",
-      },
-    })
+    // axios({
+    //   method: "PUT",
+    //   url: "http://localhost:3000/books/" + id,
+    //   data: formData,
+    //   headers: {
+    //     Authorization: token,
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    // })
+
+    this.props
+      .editBooks(token, formData, id)
       .then((response) => {
-        console.log(response);
+        this.props.getBooks(token);
+        // console.log(response);
         swal({
           icon: "success",
           title: `Book with ID = ${id} Successfully Edited`,
@@ -229,6 +235,9 @@ class ModalEdit extends Component {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  book: state.auth,
 });
 
-export default connect(mapStateToProps)(ModalEdit);
+const mapDispatchToProps = { editBooks, getBooks };
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModalEdit);
