@@ -312,9 +312,8 @@ class Home extends Component {
                     </Col>
                   </Row>
                   <Row className={Styles.cardRow}>
-                    {/* <Card /> */}
                     {/* ====== CARDS AREA ======= */}
-                    {this.state.books.map((book) => {
+                    {this.props.book.data.result.map((book) => {
                       return (
                         <BookCards
                           key={book.id}

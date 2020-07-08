@@ -2,7 +2,10 @@ const initialState = {
   isLoading: false,
   isError: false,
   errorMsg: "",
-  data: {},
+  data: {
+    "COUNT(*)": 0,
+    result: [],
+  },
 };
 
 const book = (state = initialState, action) => {
@@ -66,15 +69,12 @@ const book = (state = initialState, action) => {
         errorMsg: "Data Rejected!",
       };
     case "POSTBOOK_FULFILLED":
-      // state.data.push(action.payload.data.data);
-      // console.log(state.data.push(action.payload.data.data));
-      // console.log(state.data);
       return {
-        // ...state,
+        ...state,
         isLoading: false,
         isError: false,
-        data: [...state.data, action.payload.data.data],
       };
+
     default:
       return state;
   }

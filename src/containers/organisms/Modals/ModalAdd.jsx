@@ -3,7 +3,7 @@ import axios from "axios";
 
 /* REDUX */
 import { connect } from "react-redux";
-import { addBooks } from "../../../redux/actions/book";
+import { getBooks, addBooks } from "../../../redux/actions/book";
 
 import swal from "sweetalert";
 import {
@@ -73,7 +73,8 @@ class ModalAdd extends Component {
     this.props
       .addBooks(token, formData)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
+        this.props.getBooks(token);
         swal({
           icon: "success",
           title: `Book is Successfully Added`,
@@ -260,6 +261,6 @@ const mapStateToProps = (state) => ({
   book: state.book,
 });
 
-const mapDispatchToProps = { addBooks };
+const mapDispatchToProps = { getBooks, addBooks };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalAdd);
