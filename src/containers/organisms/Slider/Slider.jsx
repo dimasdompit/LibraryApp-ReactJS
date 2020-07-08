@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import { connect } from "react-redux";
+import { getBooks } from "../../../redux/actions/book";
 
 import SliderArrow from "../../../components/molecules/SliderArrow";
 import BookSlider from "../../../components/molecules/BookSlider";
@@ -18,18 +19,31 @@ class HomeSlider extends Component {
   }
 
   getAllBooks = () => {
+    const token = this.props.auth.data.token;
+    // const token = localStorage.getItem("token");
     const categories = ["title", "genre", "author", "created_at", "status"];
     const category = categories[Math.floor(Math.random() * categories.length)];
-    const token = localStorage.getItem("token");
-    // const token = this.props.auth.data.token;
+
+    const params = {
+      sortBy: category,
+      sortType: "ASC",
+      limit: 5,
+      page: 1,
+    };
+
+    const qs = Object.keys(params)
+      .map((key) => key + "=" + params[key])
+      .join("&");
 
     axios({
       method: "GET",
-      url: `http://localhost:3000/books/?sortBy=${category}&sortType=ASC&limit=5&page=1`,
+      url: `http://localhost:3000/books/?${qs}`,
       headers: {
         Authorization: token,
       },
     })
+      // this.props
+      //   .getBooks(token, qs)
       .then((response) => {
         this.setState({
           books: response.data.data.result,
@@ -77,10 +91,13 @@ class HomeSlider extends Component {
   }
 }
 
-export default HomeSlider;
+// export default HomeSlider;
 
-// const mapStateToProps = (state) => ({
-//   auth: state.auth,
-// });
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  book: state.book,
+});
 
-// export default connect(mapStateToProps)(HomeSlider);
+const mapDispatchToProps = { getBooks };
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeSlider);

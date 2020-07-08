@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Row, Col, Container, Form, FormGroup } from "reactstrap";
 import { Link, Redirect } from "react-router-dom";
 
-import axios from "axios";
+// import axios from "axios";
 import swal from "sweetalert";
 import { login } from "../../../redux/actions/auth";
 import { connect } from "react-redux";
@@ -22,7 +22,7 @@ import CheckBox from "../../../components/atoms/forms/CheckBox";
 
 // CSS Login Global Styles
 import Styles from "../../../styles/pages/Login/Login.module.css";
-import auth from "../../../redux/reducers/auth";
+// import auth from "../../../redux/reducers/auth";
 
 class FormLogin extends Component {
   constructor(props) {
@@ -43,9 +43,33 @@ class FormLogin extends Component {
       username: this.state.username,
       password: this.state.password,
     };
-    this.props.login(data).then(() => {
-      this.props.history.push("/");
-    });
+    this.props
+      .login(data)
+      .then((response) => {
+        // console.log(response.value.data.data.status);
+        const message = response.value.data.data.status;
+        swal({
+          icon: "success",
+          title: `${message}`,
+          button: false,
+          timer: 2000,
+        });
+      })
+      .then(() => {
+        setTimeout(() => {
+          this.props.history.push("/");
+        }, 2000);
+      })
+      .catch((error) => {
+        console.log(error.response);
+        const errMessage = error.response.data.data;
+        swal({
+          icon: "error",
+          title: `${errMessage}`,
+          showConfirmButton: false,
+          confirmButtonColor: "#000000",
+        });
+      });
 
     //   axios({
     //     method: "POST",

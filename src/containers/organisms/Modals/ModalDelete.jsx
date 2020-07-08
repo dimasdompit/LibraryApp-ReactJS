@@ -1,17 +1,15 @@
 import React, { Component } from "react";
 import { Modal, ModalHeader, ModalBody, Button } from "reactstrap";
 import axios from "axios";
+import { connect } from "react-redux";
 
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import swal from "sweetalert";
 
 import {
-  // iconStyle,
-  // notifStyle,
   modalTitle,
   deleteButton,
 } from "../../../styles/organism/ModalDelete.module.css";
+// import state from "sweetalert/typings/modules/state";
 
 class ModalDelete extends Component {
   constructor(props) {
@@ -28,8 +26,9 @@ class ModalDelete extends Component {
   };
 
   handleDeleteBooks = (event) => {
-    const token = localStorage.getItem("token");
     event.preventDefault();
+    const token = this.props.auth.data.token;
+    // const token = localStorage.getItem("token");
     const id = this.props.id;
     const title = this.props.title;
 
@@ -93,4 +92,8 @@ class ModalDelete extends Component {
   }
 }
 
-export default ModalDelete;
+// export default ModalDelete;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+export default connect(mapStateToProps)(ModalDelete);

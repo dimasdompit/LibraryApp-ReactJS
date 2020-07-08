@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
-// import { Link } from "react-router-dom";
+
+/* REDUX */
+import { connect } from "react-redux";
+import { addBooks } from "../../../redux/actions/book";
+
 import swal from "sweetalert";
 import {
   Button,
@@ -44,8 +48,9 @@ class ModalAdd extends Component {
   };
 
   handleAddBooks = (event) => {
-    const token = localStorage.getItem("token");
     event.preventDefault();
+    // const token = localStorage.getItem("token");
+    const token = this.props.auth.data.token;
     // const id = this.props.id;
 
     let formData = new FormData();
@@ -56,15 +61,17 @@ class ModalAdd extends Component {
     formData.append("author_id", this.state.author);
     formData.append("status", this.state.status);
 
-    axios({
-      method: "POST",
-      url: "http://localhost:3000/books/",
-      data: formData,
-      headers: {
-        Authorization: token,
-        "Content-Type": "multipart/form-data",
-      },
-    })
+    // axios({
+    //   method: "POST",
+    //   url: "http://localhost:3000/books/",
+    //   data: formData,
+    //   headers: {
+    //     Authorization: token,
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    // })
+    this.props
+      .addBooks(token, formData)
       .then((response) => {
         console.log(response);
         swal({
@@ -75,12 +82,12 @@ class ModalAdd extends Component {
         });
       })
       .then(() => {
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 3000);
       })
       .catch((error) => {
-        console.log(error.response);
+        console.log(error);
         swal({
           icon: "error",
           title: `Add book is invalid!`,
@@ -247,4 +254,12 @@ class ModalAdd extends Component {
   }
 }
 
-export default ModalAdd;
+// export default ModalAdd;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  book: state.book,
+});
+
+const mapDispatchToProps = { addBooks };
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModalAdd);

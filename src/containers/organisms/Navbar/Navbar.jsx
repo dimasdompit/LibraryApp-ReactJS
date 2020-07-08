@@ -32,6 +32,10 @@ class Topnav extends Component {
       isOpen: false,
       search: "",
       genre: "genre",
+      author: "author",
+      title: "title",
+      asc: "ASC",
+      desc: "DESC",
     };
   }
 
@@ -48,11 +52,39 @@ class Topnav extends Component {
     this.props.handleState(this.state.search);
   };
 
-  handleGenre = async (event) => {
+  handleSortGenre = async (event) => {
     await this.setState({
       genre: event.target.value,
     });
     this.props.getGenre(this.state.genre);
+  };
+
+  handleSortAuthor = async (event) => {
+    await this.setState({
+      author: event.target.value,
+    });
+    this.props.getAuthor(this.state.author);
+  };
+
+  handleSortTitle = async (event) => {
+    await this.setState({
+      title: event.target.value,
+    });
+    this.props.getAuthor(this.state.title);
+  };
+
+  handleSortAsc = async (event) => {
+    await this.setState({
+      asc: event.target.value,
+    });
+    this.props.getAsc(this.state.asc);
+  };
+
+  handleSortDesc = async (event) => {
+    await this.setState({
+      desc: event.target.value,
+    });
+    this.props.getDesc(this.state.desc);
   };
 
   render() {
@@ -71,9 +103,21 @@ class Topnav extends Component {
                     {/* <DropdownItem>Title</DropdownItem> */}
                     <DropdownItem
                       value={this.state.genre}
-                      onClick={this.handleGenre}
+                      onClick={this.handleSortGenre}
                     >
                       Genre
+                    </DropdownItem>
+                    <DropdownItem
+                      value={this.state.author}
+                      onClick={this.handleSortAuthor}
+                    >
+                      Author
+                    </DropdownItem>
+                    <DropdownItem
+                      value={this.state.title}
+                      onClick={this.handleSortTitle}
+                    >
+                      Title
                     </DropdownItem>
                     {/* <DropdownItem>Author</DropdownItem> */}
                   </DropdownMenu>
@@ -83,8 +127,18 @@ class Topnav extends Component {
                     All Time
                   </DropdownToggle>
                   <DropdownMenu right>
-                    <DropdownItem>Newest Books</DropdownItem>
-                    <DropdownItem>Old Books</DropdownItem>
+                    <DropdownItem
+                      value={this.state.asc}
+                      onClick={this.handleSortAsc}
+                    >
+                      A - Z
+                    </DropdownItem>
+                    <DropdownItem
+                      value={this.state.desc}
+                      onClick={this.handleSortDesc}
+                    >
+                      Z - A
+                    </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
                 <InputGroup className={Styles.homeSearch}>
@@ -93,7 +147,6 @@ class Topnav extends Component {
                       <FontAwesomeIcon icon={faSearch} />
                     </Button>
                   </InputGroupAddon>
-                  {/* <Form> */}
                   <Input
                     type="text"
                     className={Styles.homeSearchInput}
@@ -101,12 +154,7 @@ class Topnav extends Component {
                     onChange={this.handleInputChange}
                     placeholder="Search Book"
                   />
-                  {/* </Form> */}
                 </InputGroup>
-                {/* <SearchBar
-                  search={this.state.search}
-                  onChage={this.props.onChange}
-                /> */}
               </Nav>
             </Collapse>
             <NavbarBrand className={Styles.homeBrand}>

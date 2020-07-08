@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-// import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
-import { connect } from "react-redux";
-import { logout } from "../../../redux/actions/auth";
 import { Container, Row, Col, Button } from "reactstrap";
 import Styles from "../../../styles/pages/Home/Home.module.css";
-// import LoadingScreen from "../../organisms/Loading/Loading";
+
+/* REDUX SETUP */
+import { connect } from "react-redux";
+import { logout } from "../../../redux/actions/auth";
+import { getBooks } from "../../../redux/actions/book";
+import { getGenre } from "../../../redux/actions/genre";
+import { getAuthor } from "../../../redux/actions/author";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -19,7 +22,7 @@ import Sidebar from "../../organisms/Sidebar/Sidebar";
 import BookCards from "../../../components/molecules/BookCards";
 import BookSlider from "../../organisms/Slider/Slider";
 
-import auth from "../../../redux/reducers/auth";
+// import auth from "../../../redux/reducers/auth";
 
 // import HomeSlider from "../../organisms/Slider/Slider";
 // import Card from "../../organisms/Card/Card";
@@ -61,18 +64,35 @@ class Home extends Component {
     this.props.history.push("/login");
   };
 
-  handleSortGenre = (dropdown) => {
-    this.props.history.push(`/?sortBy=${dropdown}`);
-    const token = localStorage.getItem("token");
-    // const token = this.props.auth.data.token;
+  handleSort = (sort, order) => {
+    this.props.history.push(
+      `/?sortBy=${sort}&sortType=${undefined ? order : "ASC"}`
+    );
+    // const token = localStorage.getItem("token");
+    const token = this.props.auth.data.token;
+
+    const sorted = {
+      sortBy: sort,
+      // sortType: order,
+    };
+
+    const qs = Object.keys(sorted)
+      .map((key) => key + "=" + sorted[key])
+      .join("&");
+
     axios({
       method: "GET",
-      url: `http://localhost:3000/books/?sortBy=${dropdown}`,
+      url: `http://localhost:3000/books/?${qs}`,
       headers: {
         Authorization: token,
       },
     })
+      /* GET ALL BOOKS REDUX */
+      // this.props
+      //   .getBook(token, qs)
       .then((response) => {
+        // const data = response.value.data.data.result;
+        // console.log(data);
         this.setState({
           books: response.data.data.result,
         });
@@ -84,17 +104,29 @@ class Home extends Component {
 
   handleParams = (params) => {
     this.props.history.push(`/?search=${params}`);
-    const token = localStorage.getItem("token");
-    // const token = this.props.auth.data.token;
+    // const token = localStorage.getItem("token");
+    const token = this.props.auth.data.token;
+
+    const search = {
+      search: params,
+    };
+
+    const qs = Object.keys(search)
+      .map((key) => key + "=" + search[key])
+      .join("&");
 
     axios({
       method: "GET",
-      url: `http://localhost:3000/books/?search=${params}`,
+      url: `http://localhost:3000/books/?${qs}`,
       headers: {
         Authorization: token,
       },
     })
+      // this.props
+      //   .getBook(token, qs)
       .then((response) => {
+        // const data = response.value.data.data.result;
+        // console.log(data);
         this.setState({
           books: response.data.data.result,
         });
@@ -105,8 +137,8 @@ class Home extends Component {
   };
 
   checkAuth = () => {
-    const token = localStorage.getItem("token");
-    // const token = this.props.auth.data.token;
+    // const token = localStorage.getItem("token");
+    const token = this.props.auth.data.token;
     const decoded = jwtDecode(token);
     this.setState({
       ...this.state,
@@ -118,10 +150,10 @@ class Home extends Component {
 
   /* ======== GET ALL BOOKS ========= */
   getAllBooks = () => {
+    // let token = localStorage.getItem("token");
     /* REDUX CONFIG TOKEN */
     const token = this.props.auth.data.token;
     /* ================= */
-    // let token = localStorage.getItem("token");
     const pagination = {
       limit: this.state.pagination.limit,
       page: this.state.pagination.page,
@@ -129,23 +161,21 @@ class Home extends Component {
     const qs = Object.keys(pagination)
       .map((key) => key + "=" + pagination[key])
       .join("&");
-    axios({
-      method: "GET",
-      url: `http://localhost:3000/books/?${qs}`,
-      headers: {
-        Authorization: token,
-      },
-    })
+
+    this.props
+      .getBooks(token, qs)
       .then((response) => {
-        let totalData = response.data.data["COUNT(*)"];
+        let totalData = response.value.data.data["COUNT(*)"];
         const totalPage = totalData / this.state.pagination.limit;
         let pages = [];
         for (let i = 0; i < totalPage; i++) {
           pages.push(i);
         }
+
+        const data = response.value.data.data.result;
         this.setState({
           ...this.state,
-          books: response.data.data.result,
+          books: data,
           pagination: {
             page: this.state.pagination.page,
             limit: this.state.pagination.limit,
@@ -154,8 +184,9 @@ class Home extends Component {
         });
       })
       .catch((error) => {
-        console.log(error.response);
-        // this.props.history.push("/login");
+        console.log(error);
+        this.props.logout();
+        this.props.history.push("/login");
         // window.location.pathname = "/login";
       });
   };
@@ -178,20 +209,22 @@ class Home extends Component {
 
   /* =========== GET ALL GENRE ============ */
   getAllGenre = () => {
-    let token = localStorage.getItem("token");
-    // const token = this.props.auth.data.token;
+    // let token = localStorage.getItem("token");
+    const token = this.props.auth.data.token;
 
-    axios({
-      method: "GET",
-      url: "http://localhost:3000/genre",
-      headers: {
-        Authorization: token,
-      },
-    })
+    // axios({
+    //   method: "GET",
+    //   url: "http://localhost:3000/genre",
+    //   headers: {
+    //     Authorization: token,
+    //   },
+    // })
+    this.props
+      .getGenre(token)
       .then((response) => {
-        // console.log(response.data);
+        // console.log(response.value.data.data);
         this.setState({
-          genre: response.data.data,
+          genre: response.value.data.data,
         });
       })
       .catch((error) => {
@@ -201,20 +234,22 @@ class Home extends Component {
 
   /* =========== GET ALL AUTHOR ============ */
   getAllAuthor = () => {
-    let token = localStorage.getItem("token");
-    // const token = this.props.auth.data.token;
+    // let token = localStorage.getItem("token");
+    const token = this.props.auth.data.token;
 
-    axios({
-      method: "GET",
-      url: "http://localhost:3000/author",
-      headers: {
-        Authorization: token,
-      },
-    })
+    // axios({
+    //   method: "GET",
+    //   url: "http://localhost:3000/author",
+    //   headers: {
+    //     Authorization: token,
+    //   },
+    // })
+    this.props
+      .getAuthor(token)
       .then((response) => {
         // console.log(response.data);
         this.setState({
-          author: response.data.data,
+          author: response.value.data.data,
         });
       })
       .catch((error) => {
@@ -253,7 +288,12 @@ class Home extends Component {
                   {/* ===== NAVBAR AREA ===== */}
                   <Topnav
                     genre={this.state.genre}
-                    getGenre={this.handleSortGenre}
+                    author={this.state.author}
+                    getGenre={this.handleSort}
+                    getAuthor={this.handleSort}
+                    getTitle={this.handleSort}
+                    getAsc={this.handleSort}
+                    getDesc={this.handleSort}
                     search={this.state.search}
                     handleState={this.handleParams}
                   />
@@ -349,8 +389,11 @@ class Home extends Component {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  book: state.book,
+  genre: state.genre,
+  author: state.author,
 });
 
-const mapDispatchToProps = { logout };
+const mapDispatchToProps = { logout, getBooks, getGenre, getAuthor };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

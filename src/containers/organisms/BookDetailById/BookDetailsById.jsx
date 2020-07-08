@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+import { connect } from "react-redux";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -31,7 +32,9 @@ class BookDetailsById extends Component {
 
   /* ======== GET ALL GENRE ======== */
   getAllGenre = () => {
-    let token = localStorage.getItem("token");
+    // let token = localStorage.getItem("token");
+    const token = this.props.auth.data.token;
+
     axios({
       method: "GET",
       url: "http://localhost:3000/genre",
@@ -51,7 +54,9 @@ class BookDetailsById extends Component {
 
   /* ======== GET ALL AUTHOR ======= */
   getAllAuthor = () => {
-    let token = localStorage.getItem("token");
+    // let token = localStorage.getItem("token");
+    const token = this.props.auth.data.token;
+
     axios({
       method: "GET",
       url: "http://localhost:3000/author",
@@ -71,7 +76,9 @@ class BookDetailsById extends Component {
 
   /* ======== CHECK AUTH ======= */
   checkAuth = () => {
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
+    const token = this.props.auth.data.token;
+
     const decoded = jwtDecode(token);
     this.setState({
       ...this.state,
@@ -85,7 +92,9 @@ class BookDetailsById extends Component {
   handleBorrowBooks = () => {
     // event.preventDefault();
 
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
+    const token = this.props.auth.data.token;
+
     const decoded = jwtDecode(token);
     this.setState({
       ...this.state,
@@ -292,4 +301,10 @@ class BookDetailsById extends Component {
   }
 }
 
-export default BookDetailsById;
+// export default BookDetailsById;
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps)(BookDetailsById);

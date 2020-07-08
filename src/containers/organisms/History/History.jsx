@@ -13,7 +13,10 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import jwtDecode from "jwt-decode";
 import Moment from "react-moment";
 import swal from "sweetalert";
-// import { connect } from "react-redux";
+
+/* REDUX */
+import { connect } from "react-redux";
+import { getUserById } from "../../../redux/actions/users";
 
 import Styles from "../../../styles/pages/Home/Home.module.css";
 
@@ -35,21 +38,25 @@ class History extends Component {
   };
 
   getUserHistory = () => {
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
+    const token = this.props.auth.data.token;
     const decoded = jwtDecode(token);
     const userId = decoded.id;
 
-    axios({
-      method: "GET",
-      url: `http://localhost:3000/books/history/${userId}`,
-      headers: {
-        Authorization: token,
-      },
-    })
+    // axios({
+    //   method: "GET",
+    //   url: `http://localhost:3000/books/history/${userId}`,
+    //   headers: {
+    //     Authorization: token,
+    //   },
+    // })
+
+    this.props
+      .getUserById(token, userId)
       .then((response) => {
         this.setState({
           ...this.state,
-          history: response.data.data,
+          history: response.value.data.data,
         });
       })
       .catch((err) => {
@@ -58,9 +65,8 @@ class History extends Component {
   };
 
   handleReturnBook = (id) => {
-    console.log(id);
-    const token = localStorage.getItem("token");
-    // const token = this.props.auth.data.token;
+    // const token = localStorage.getItem("token");
+    const token = this.props.auth.data.token;
 
     axios({
       method: "PUT",
@@ -108,7 +114,7 @@ class History extends Component {
         >
           <ModalHeader toggle={this.toggle}>Borrow History</ModalHeader>
           <ModalBody>
-            <Table striped>
+            <Table striped responsive>
               <thead>
                 <tr>
                   <th>#</th>
@@ -126,7 +132,7 @@ class History extends Component {
                       <td>{history.users}</td>
                       <td>{history.book}</td>
                       <td>
-                        <Moment format="DD-MM-YYYY HH:mm">
+                        <Moment format="DD MMMM YYYY HH:mm">
                           {history.created_at}
                         </Moment>
                       </td>
@@ -164,8 +170,13 @@ class History extends Component {
   }
 }
 
-// const mapStateToProps = (state) => ({
-//   auth: state.auth,
-// });
+// export default History;
 
-export default History;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  users: state.user,
+});
+
+const mapDispatchToProps = { getUserById };
+
+export default connect(mapStateToProps, mapDispatchToProps)(History);

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
 // import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import {
@@ -44,7 +45,9 @@ class ModalEdit extends Component {
   };
 
   handleUpdateBooks = (event) => {
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
+    const token = this.props.auth.data.token;
+
     event.preventDefault();
     const id = this.props.id;
 
@@ -222,4 +225,10 @@ class ModalEdit extends Component {
   }
 }
 
-export default ModalEdit;
+// export default ModalEdit;
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps)(ModalEdit);

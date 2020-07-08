@@ -35,10 +35,7 @@ export default class Sidebar extends Component {
               </NavItem>
               <NavItem className={Styles.homeItems}>
                 <NavLink href="#" className={Styles.homeItemsName}>
-                  <History
-                    userId={this.props.userId}
-                    bookId={this.props.bookId}
-                  />
+                  <History userId={this.props.userId} />
                 </NavLink>
               </NavItem>
               {this.props.roles === "admin" || this.props.roles === "staff" ? (
