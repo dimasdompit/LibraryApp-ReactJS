@@ -1,6 +1,6 @@
 # DOMSLibrary User-Interface
 
-### Library App User-Interface with ReactJS
+### Library App User-Interface with ReactJS & Redux
 
 ![Reactjs](https://i.imgur.com/1Nq19be.png)
 
