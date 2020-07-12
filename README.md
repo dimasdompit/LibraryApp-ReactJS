@@ -1,10 +1,16 @@
 # DOMSLibrary User-Interface
 
-### Library App User-Interface with ReactJS
+### Library App User-Interface with ReactJS & Redux
 
 ![Reactjs](https://i.imgur.com/1Nq19be.png)
 
 [React](https://reactjs.org/) (React.js / ReactJS) is a JavaScript library developed by Facebook. It is used for building reusable UI components. React is a library for building composable user interfaces, it supports and encourages the creation of reusable UI components, which presents data that changes over time by using declarative syntax.
+
+![Redux](https://i.imgur.com/bdZA5Ie.png)
+
+[Redux](https://redux.js.org/) is a predictable state container for JavaScript apps.
+
+It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test. On top of that, it provides a great developer experience, such as live code editing combined with a time traveling debugger.
 
 ## Guide to Installation
 
@@ -62,6 +68,16 @@ http://localhost:3006/
 |           reactstrap           |                            https://github.com/reactstrap                            |
 |          react-slick           |                        https://github.com/akiran/react-slick                        |
 |           sweetalert           |                         https://github.com/t4t5/sweetalert                          |
+|           react-redux          |                         https://github.com/reduxjs/react-redux                      |
+|           redux          |                         https://github.com/reduxjs/redux                      |
+|           redux-logger          |                         https://github.com/LogRocket/redux-logger                      |
+|           redux-persist          |                         https://github.com/rt2zz/redux-persist                      |
+|           redux-promise-middleware          |                         https://github.com/pburtchaell/redux-promise-middleware                      |
+|           jwt-decode          |                         https://github.com/auth0/jwt-decode                      |
+|           dotenv          |                         https://github.com/motdotla/dotenv                      |
+|           react-moment          |                         https://github.com/headzoo/react-moment                      |
+|           query-string          |                         https://github.com/sindresorhus/query-string                      |
+
 
 ## Requirements
 
@@ -69,8 +85,10 @@ http://localhost:3006/
 
 - [x] Login/Register with JWT
 - [x] CRUD (include borrow flow)
-- [x] Search, sort
+- [x] Search, sort & pagination
 - [x] Upload Image
+- [x] Borrow History
+- [x] URL Query
 - [x] Logout
 
 #### Additional :
@@ -78,12 +96,14 @@ http://localhost:3006/
 - [x] Layout and Color
 - [x] Component
 
+#### Optional :
+
+- [x] ENV
+- [x] Redux-persist
+
 #### On-progress :
 
 - [ ] Responsive
-- [ ] URL Query
-- [ ] ENV
-- [ ] History
 
 ## Tools/Software
 
