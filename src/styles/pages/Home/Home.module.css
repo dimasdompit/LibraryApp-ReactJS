@@ -1,7 +1,5 @@
 .homeContainer {
   box-sizing: border-box;
-  /* position: relative; */
-  /* width: auto; */
 }
 
 .homeDashboard {
@@ -20,13 +18,14 @@
 
 .homeProfileImg {
   text-align: center;
+  width: 100%;
   margin-top: 45px;
   padding-bottom: 20px;
 }
 
 .homeUsername {
   text-align: center;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 700;
   margin-bottom: 35px;
 }
@@ -67,43 +66,52 @@
 /* ======== CONTENT STYLES ========= */
 
 .homeBody {
-  /* width: 100% !important; */
-  /* position: sticky; */
   padding: 0;
   box-sizing: border-box;
 }
 
 .navbarArea {
-  /* display: block; */
   padding: 0;
-  /* margin-left: 10px; */
 }
 
 .homeTopnav {
   background-color: white;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
   width: 100% !important;
-  /* margin: 0 auto; */
-  padding: 20px 30px;
   box-sizing: border-box;
-  /* height: 100%; */
-  /* top: 0; */
-  /* position: fixed; */
   z-index: 9;
 }
 
-.homeDropdown {
+.homeDropdownCategories,
+.homeDropdownTime {
   color: black !important;
   font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.homeDropdownCategories {
+  width: 10rem;
+}
+
+.homeDropdownTime {
+  width: 7rem;
+}
+
+.homeDropdownBtn {
+  display: flex;
+  height: 2rem;
+  margin: auto;
+  align-items: center;
+  text-align: center;
 }
 
 .homeSearch {
-  /* width: 100% !important; */
-  /* margin-left: 100px; */
-  /* width: 400px; */
+  display: flex;
+  justify-content: center;
 }
 
-.homeSearchButton {
+/* .homeSearchButton {
   border: 1px solid #ccc;
   border-right: none;
   border-radius: 50px;
@@ -119,11 +127,12 @@
   border-right: none;
   background-color: transparent;
   color: #ccc;
-}
+} */
 
 .homeSearchInput {
   border-radius: 50px;
-  border-left: none;
+  text-align: center;
+  justify-content: center;
 }
 
 .homeBrand span {
@@ -143,7 +152,7 @@
 /* SLIDER STYLES */
 
 .homeSlider {
-  margin: 50px 0 80px 0;
+  margin: 50px 0 70px 0;
 }
 
 .sliderArea {
@@ -163,16 +172,23 @@
   text-align: center;
   color: #fff;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-  width: 87%;
+  width: 85%;
   padding: 10px 10px;
   border-radius: 30px;
-  bottom: 5px;
-  left: 60px;
+  bottom: 0%;
+  left: 50%;
   box-sizing: border-box;
+  transform: translate(-50%, -20%);
 }
 
 .sliderHeadings h3 {
-  font-size: 35px;
+  font-size: 30px;
+}
+
+.sliderHeadings h5 {
+  font-size: 18px;
+  font-weight: 300;
+  font-style: italic;
 }
 
 /* CARD STYLES */

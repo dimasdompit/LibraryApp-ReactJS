@@ -162,7 +162,7 @@ class Topnav extends Component {
                 >
                   <Input
                     type="select"
-                    className="mr-2"
+                    className={`${Styles.homeDropdownCategories} mr-2`}
                     name="sortBy"
                     onChange={(e) => this.setState({ sort: e.target.value })}
                     value={this.state.sort}
@@ -175,7 +175,7 @@ class Topnav extends Component {
                   <Input
                     type="select"
                     name="sortType"
-                    className="mr-2"
+                    className={`${Styles.homeDropdownTime} mr-2`}
                     onChange={(e) => this.setState({ order: e.target.value })}
                     value={this.state.order}
                   >
@@ -185,7 +185,7 @@ class Topnav extends Component {
                   </Input>
                   <input type="hidden" name="page" value={1} />
                   <Button
-                    className="mr-2"
+                    className={`${Styles.homeDropdownBtn}`}
                     color="warning"
                     onClick={() => this.handleSort()}
                   >
@@ -216,8 +216,8 @@ class Topnav extends Component {
                       Title
                     </DropdownItem>
                   </DropdownMenu>
-                </UncontrolledDropdown> */}
-                {/* <UncontrolledDropdown nav inNavbar>
+                </UncontrolledDropdown>
+                <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret className={Styles.homeDropdown}>
                     All Time
                   </DropdownToggle>
@@ -237,12 +237,12 @@ class Topnav extends Component {
                   </DropdownMenu>
                 </UncontrolledDropdown> */}
               </Nav>
-              <InputGroup className={Styles.homeSearch}>
-                <InputGroupAddon addonType="prepend">
+              <InputGroup className={`${Styles.homeSearch} mr-5 ml-5`}>
+                {/* <InputGroupAddon addonType="prepend">
                   <Button type="submit" className={Styles.homeSearchButton}>
                     <FontAwesomeIcon icon={faSearch} />
                   </Button>
-                </InputGroupAddon>
+                </InputGroupAddon> */}
                 <Input
                   type="text"
                   className={Styles.homeSearchInput}
@@ -250,7 +250,7 @@ class Topnav extends Component {
                   // onChange={this.handleInputChange}
                   onChange={(e) => this.setState({ search: e.target.value })}
                   onKeyDown={(e) => this.handleSearch(e)}
-                  placeholder="Search Book"
+                  placeholder={"Search Book"}
                 />
               </InputGroup>
             </Collapse>
@@ -260,7 +260,7 @@ class Topnav extends Component {
                 src="http://localhost:3006/bookshelf-home.png"
                 alt="home-logo"
               />
-              <span>DOMSLibrary</span>
+              {/* <span>DOMSLibrary</span> */}
             </NavbarBrand>
           </Navbar>
         </Col>

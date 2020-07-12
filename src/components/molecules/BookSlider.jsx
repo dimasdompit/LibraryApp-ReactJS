@@ -18,7 +18,7 @@ const Books = ({ id, image, title, author, className }) => {
           <div className={Styles.homeSliderImage} style={imageStyle}>
             <div className={Styles.sliderHeadings}>
               <h3>{title}</h3>
-              <h5>{author}</h5>
+              <h5>{`- ${author} -`}</h5>
             </div>
           </div>
         </section>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { Container, Row, Col, Button } from "reactstrap";
+import queryString from "query-string";
 import Styles from "../../../styles/pages/Home/Home.module.css";
 
 /* REDUX SETUP */
@@ -60,14 +61,11 @@ class Home extends Component {
   };
 
   handleLogout = () => {
-    // localStorage.removeItem("token");
-    // localStorage.removeItem("refreshToken");
     this.props.logout();
     this.props.history.push("/login");
   };
 
   handleSort = (sort, order) => {
-    // this.props.history.push(`/?sortBy=${sort}&sortType=${order}`);
     // const token = localStorage.getItem("token");
     const token = this.props.auth.data.token;
 
@@ -155,7 +153,7 @@ class Home extends Component {
       .getBooks(token, qs)
       .then((response) => {
         let totalData = response.value.data.data["COUNT(*)"];
-        const totalPage = totalData / this.state.pagination.limit;
+        const totalPage = parseInt(totalData / this.state.pagination.limit);
         let pages = [];
         for (let i = 0; i < totalPage; i++) {
           pages.push(i);
@@ -191,6 +189,25 @@ class Home extends Component {
         },
       },
       () => {
+        let qs = queryString.parse(this.props.history.location.search);
+        qs.page = qs.page || 1;
+        console.log(qs.page);
+        if (this.props.history.location.search === "") {
+          this.props.history.push(`/?page=${parseInt(qs.page)}`);
+        } else {
+          if (qs.page) {
+            const url = this.props.history.location.search.replace(
+              `page=${qs.page}`,
+              `page=${parseInt(qs.page)}`
+            );
+            this.props.history.push(url);
+          } else {
+            this.props.history.push(
+              `${this.props.history.location.search}&page=${parseInt(qs.page)}`
+            );
+          }
+        }
+
         this.getAllBooks();
       }
     );
@@ -226,13 +243,6 @@ class Home extends Component {
     // let token = localStorage.getItem("token");
     const token = this.props.auth.data.token;
 
-    // axios({
-    //   method: "GET",
-    //   url: "http://localhost:3000/author",
-    //   headers: {
-    //     Authorization: token,
-    //   },
-    // })
     this.props
       .getAuthor(token)
       .then((response) => {
@@ -258,7 +268,7 @@ class Home extends Component {
       <>
         <Container fluid>
           <Row className={Styles.homeDashboard}>
-            <Col md="3" sm="3" className={Styles.homeSidebar}>
+            <Col md="3" sm="4" className={Styles.homeSidebar}>
               {/* ===== SIDEBAR AREA ===== */}
               <Sidebar
                 userId={this.state.id}
@@ -270,7 +280,7 @@ class Home extends Component {
                 onClick={this.handleLogout}
               />
             </Col>
-            <Col md="9" sm="9" className={Styles.homeBody}>
+            <Col md="9" sm="8" className={Styles.homeBody}>
               <Container fluid>
                 <Row>
                   {/* <Topnav /> */}
