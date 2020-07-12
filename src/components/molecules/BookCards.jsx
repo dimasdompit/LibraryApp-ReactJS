@@ -14,7 +14,7 @@ const BookCards = ({ image, title, description, id, genre, author }) => {
             <CardImg
               top
               className={Styles.cardImage}
-              src={`http://localhost:3000/images/${image}`}
+              src={`${process.env.REACT_APP_API_URL}images/${image}`}
               alt="book-image"
             />
             <CardBody className={Styles.cardBody}>

@@ -5,7 +5,7 @@ export const getUserById = (token, userId) => {
     type: "GETUSERBYID",
     payload: axios({
       method: "GET",
-      url: `http://localhost:3000/books/history/${userId}`,
+      url: `${process.env.REACT_APP_API_URL}books/history/${userId}`,
       headers: {
         Authorization: token,
       },

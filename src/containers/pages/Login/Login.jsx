@@ -38,7 +38,7 @@ class FormLogin extends Component {
   handleLogin = (event) => {
     event.preventDefault();
     /* USING REDUX CONFIG */
-    console.log(this.props.auth);
+    // console.log(this.props.auth);
     const data = {
       username: this.state.username,
       password: this.state.password,

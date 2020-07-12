@@ -5,7 +5,7 @@ export const getAuthor = (token) => {
     type: "GETALLAUTHOR",
     payload: axios({
       method: "GET",
-      url: "http://localhost:3000/author",
+      url: `${process.env.REACT_APP_API_URL}author`,
       headers: {
         Authorization: token,
       },

@@ -108,6 +108,7 @@ class History extends Component {
   }
 
   render() {
+    // console.log(this.props.users);
     return (
       <>
         <p onClick={this.toggle}>History</p>

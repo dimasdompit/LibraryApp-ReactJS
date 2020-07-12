@@ -21,6 +21,7 @@ import Topnav from "../../organisms/Navbar/Navbar";
 import Sidebar from "../../organisms/Sidebar/Sidebar";
 import BookCards from "../../../components/molecules/BookCards";
 import BookSlider from "../../organisms/Slider/Slider";
+import LoadingScreen from "../../organisms/Loading/Loading";
 
 // import auth from "../../../redux/reducers/auth";
 
@@ -31,7 +32,6 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: "",
       id: "",
       username: "",
       roles: "",
@@ -42,6 +42,8 @@ class Home extends Component {
         { id: 1, name: "Available" },
         { id: 2, name: "Not Available" },
       ],
+      search: "",
+      sort: "",
       pagination: {
         page: 1,
         limit: 6,
@@ -65,28 +67,19 @@ class Home extends Component {
   };
 
   handleSort = (sort, order) => {
-    this.props.history.push(
-      `/?sortBy=${sort}&sortType=${undefined ? order : "ASC"}`
-    );
+    // this.props.history.push(`/?sortBy=${sort}&sortType=${order}`);
     // const token = localStorage.getItem("token");
     const token = this.props.auth.data.token;
 
     const sorted = {
       sortBy: sort,
-      // sortType: order,
+      sortType: order,
     };
 
     const qs = Object.keys(sorted)
       .map((key) => key + "=" + sorted[key])
       .join("&");
 
-    // axios({
-    //   method: "GET",
-    //   url: `http://localhost:3000/books/?${qs}`,
-    //   headers: {
-    //     Authorization: token,
-    //   },
-    // })
     /* GET ALL BOOKS REDUX */
     this.props
       .getBooks(token, qs)
@@ -103,7 +96,8 @@ class Home extends Component {
   };
 
   handleParams = (params) => {
-    this.props.history.push(`/?search=${params}`);
+    // this.props.history.push(`/?search=${params}`);
+    // console.log(this.props.location);
     // const token = localStorage.getItem("token");
     const token = this.props.auth.data.token;
 
@@ -115,17 +109,11 @@ class Home extends Component {
       .map((key) => key + "=" + search[key])
       .join("&");
 
-    // axios({
-    //   method: "GET",
-    //   url: `http://localhost:3000/books/?${qs}`,
-    //   headers: {
-    //     Authorization: token,
-    //   },
-    // })
+    // this.props.history();
     this.props
       .getBooks(token, qs)
       .then((response) => {
-        // console.log(response);
+        console.log(response);
         // const data = response.value.data.data.result;
         // console.log(data);
         // this.setState({
@@ -295,8 +283,10 @@ class Home extends Component {
                     getTitle={this.handleSort}
                     getAsc={this.handleSort}
                     getDesc={this.handleSort}
-                    search={this.state.search}
+                    // search={this.state.search}
+                    history={this.props.history}
                     handleState={this.handleParams}
+                    handleStateSort={this.handleSort}
                   />
                 </Row>
                 <div className={Styles.homeContent}>
@@ -331,6 +321,7 @@ class Home extends Component {
                       );
                     })}
                   </Row>
+                  {/* {this.state.pagination.limit >= 6 ? ( */}
                   <Row className="d-flex justify-content-center mt-5">
                     {/* PAGINTATION */}
                     <Button
@@ -357,7 +348,6 @@ class Home extends Component {
                         </Button>
                       );
                     })}
-
                     <Button
                       color="warning"
                       className="ml-1"
@@ -374,6 +364,9 @@ class Home extends Component {
                       <FontAwesomeIcon icon={faAngleDoubleRight} />
                     </Button>
                   </Row>
+                  {/* // ) : (
+                  //   ""
+                  // )} */}
                 </div>
               </Container>
             </Col>

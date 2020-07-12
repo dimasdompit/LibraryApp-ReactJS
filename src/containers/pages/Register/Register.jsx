@@ -44,8 +44,8 @@ class FormRegister extends Component {
       },
     })
       .then((response) => {
-        localStorage.setItem("token", response.data.data.token);
-        localStorage.setItem("refreshToken", response.data.data.refreshToken);
+        // localStorage.setItem("token", response.data.data.token);
+        // localStorage.setItem("refreshToken", response.data.data.refreshToken);
         swal({
           icon: "success",
           title: `${response.data.data.status}`,

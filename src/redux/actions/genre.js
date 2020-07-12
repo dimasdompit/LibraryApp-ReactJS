@@ -5,7 +5,7 @@ export const getGenre = (token) => {
     type: "GETALLGENRE",
     payload: axios({
       method: "GET",
-      url: "http://localhost:3000/genre",
+      url: `${process.env.REACT_APP_API_URL}genre`,
       headers: {
         Authorization: token,
       },

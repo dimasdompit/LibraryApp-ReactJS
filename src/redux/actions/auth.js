@@ -5,7 +5,7 @@ export const login = (data) => {
     type: "LOGIN",
     payload: axios({
       method: "POST",
-      url: "http://localhost:3000/auth/login",
+      url: `${process.env.REACT_APP_API_URL}auth/login`,
       data: {
         username: data.username,
         password: data.password,

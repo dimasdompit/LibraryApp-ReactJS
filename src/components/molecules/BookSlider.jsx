@@ -7,7 +7,7 @@ const Books = ({ id, image, title, author, className }) => {
   const imageStyle = {
     width: "100%",
     height: "350px",
-    background: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(http://localhost:3000/images/${image}) no-repeat center`,
+    background: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${process.env.REACT_APP_API_URL}images/${image}) no-repeat center`,
     backgroundSize: "cover",
     borderRadius: "30px",
   };

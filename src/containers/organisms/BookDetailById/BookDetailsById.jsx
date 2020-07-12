@@ -39,7 +39,7 @@ class BookDetailsById extends Component {
 
     axios({
       method: "GET",
-      url: "http://localhost:3000/genre",
+      url: `${process.env.REACT_APP_API_URL}genre`,
       headers: {
         Authorization: token,
       },
@@ -61,7 +61,7 @@ class BookDetailsById extends Component {
 
     axios({
       method: "GET",
-      url: "http://localhost:3000/author",
+      url: `${process.env.REACT_APP_API_URL}author`,
       headers: {
         Authorization: token,
       },
@@ -198,7 +198,7 @@ class BookDetailsById extends Component {
     const heroStyles = {
       width: "100%",
       height: "23rem",
-      backgroundImage: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(http://localhost:3000/images/${this.props.image})`,
+      backgroundImage: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${process.env.REACT_APP_API_URL}images/${this.props.image})`,
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
@@ -275,7 +275,7 @@ class BookDetailsById extends Component {
                 <Col lg="4">
                   <div className={Styles.detailBookImage}>
                     <img
-                      src={`http://localhost:3000/images/${this.props.image}`}
+                      src={`${process.env.REACT_APP_API_URL}images/${this.props.image}`}
                       alt="book-image"
                     />
                   </div>

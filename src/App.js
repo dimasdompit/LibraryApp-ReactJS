@@ -9,6 +9,7 @@ import BookDetails from "./containers/pages/BookDetails/BookDetails";
 import Home from "./containers/pages/Home/Home";
 
 import "./App.css";
+require("dotenv").config();
 
 function App() {
   return (

@@ -35,18 +35,18 @@ class HomeSlider extends Component {
       .map((key) => key + "=" + params[key])
       .join("&");
 
-    axios({
-      method: "GET",
-      url: `http://localhost:3000/books/?${qs}`,
-      headers: {
-        Authorization: token,
-      },
-    })
-      // this.props
-      //   .getBooks(token, qs)
+    // axios({
+    //   method: "GET",
+    //   url: `http://localhost:3000/books/?${qs}`,
+    //   headers: {
+    //     Authorization: token,
+    //   },
+    // })
+    this.props
+      .getBooks(token, qs)
       .then((response) => {
         this.setState({
-          books: response.data.data.result,
+          books: response.value.data.data.result,
         });
       })
       .catch((error) => {

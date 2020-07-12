@@ -1,11 +1,12 @@
 import axios from "axios";
+// require("dotenv").config();
 
 export const getBooks = (token, qs) => {
   return {
     type: "GETALLBOOK",
     payload: axios({
       method: "GET",
-      url: `http://localhost:3000/books/?${qs}`,
+      url: `${process.env.REACT_APP_API_URL}books/?${qs}`,
       headers: {
         Authorization: token,
       },
@@ -18,7 +19,7 @@ export const getBooksById = (token, id) => {
     type: "GETBOOKSBYID",
     payload: axios({
       method: "GET",
-      url: "http://localhost:3000/books/" + id,
+      url: `${process.env.REACT_APP_API_URL}books/${id}`,
       headers: {
         Authorization: token,
       },
@@ -31,7 +32,7 @@ export const addBooks = (token, data) => {
     type: "POSTBOOK",
     payload: axios({
       method: "POST",
-      url: "http://localhost:3000/books/",
+      url: `${process.env.REACT_APP_API_URL}books/`,
       data: data,
       headers: {
         Authorization: token,
@@ -46,7 +47,7 @@ export const editBooks = (token, id, data) => {
     type: "PUTBOOK",
     payload: axios({
       method: "PUT",
-      url: "http://localhost:3000/books/" + id,
+      url: `${process.env.REACT_APP_API_URL}books/${id}`,
       data: data,
       headers: {
         Authorization: token,
@@ -61,7 +62,7 @@ export const deleteBooks = (token, id) => {
     type: "DELETEBOOK",
     payload: axios({
       method: "DELETE",
-      url: "http://localhost:3000/books/" + id,
+      url: `${process.env.REACT_APP_API_URL}books/${id}`,
       headers: {
         Authorization: token,
       },
@@ -87,7 +88,7 @@ export const returnBooks = (token, id) => {
     type: "RETURNBOOK",
     payload: axios({
       method: "PUT",
-      url: `http://localhost:3000/books/return/${id}`,
+      url: `${process.env.REACT_APP_API_URL}books/return/${id}`,
       headers: {
         Authorization: token,
       },
@@ -100,7 +101,7 @@ export const borrowBooks = (token, id, data) => {
     type: "BORROWBOOK",
     payload: axios({
       method: "PUT",
-      url: "http://localhost:3000/books/borrow/" + id,
+      url: `${process.env.REACT_APP_API_URL}books/borrow/${id}`,
       data: data,
       headers: {
         Authorization: token,
