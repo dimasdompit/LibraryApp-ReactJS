@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { Row, Col, Container, Form, FormGroup } from "reactstrap";
 import axios from "axios";
 
+/* ========= REDUX ========= */
+import { connect } from "react-redux";
+import { register } from "../../../redux/actions/auth";
+
 // Components
-// import RegisterForm from "../../organisms/Register/RegisterForm";
-// import LoginForm from "../../organisms/Login/LoginForm";
-// import InputLoginGroup from "../../../components/molecules/InputLoginGroup";
 import LoginBanner from "../../organisms/Login/LoginBanner";
 import Title from "../../../components/atoms/headings/Title";
 import Text1 from "../../../components/atoms/texts/Text1";
@@ -34,28 +35,35 @@ class FormRegister extends Component {
 
   handleRegister = (event) => {
     event.preventDefault();
-    axios({
-      method: "POST",
-      url: "http://localhost:3000/auth/register",
-      data: {
-        username: this.state.username,
-        password: this.state.password,
-        roles_id: this.state.roles_id,
-      },
-    })
+    // axios({
+    //   method: "POST",
+    //   url: "http://localhost:3000/auth/register",
+    //   data: {
+    //     username: this.state.username,
+    //     password: this.state.password,
+    //     roles_id: this.state.roles_id,
+    //   },
+    // })
+    const data = {
+      username: this.state.username,
+      password: this.state.password,
+      roles_id: this.state.roles_id,
+    };
+    this.props
+      .register(data)
       .then((response) => {
         // localStorage.setItem("token", response.data.data.token);
         // localStorage.setItem("refreshToken", response.data.data.refreshToken);
         swal({
           icon: "success",
-          title: `${response.data.data.status}`,
+          title: `${response.value.data.data.status}`,
           showConfirmaButton: false,
           timer: 2000,
         });
       })
       .then(() => {
         setTimeout(() => {
-          window.location.assign("/login");
+          this.props.history.push("/login");
         }, 3000);
       })
       .catch((error) => {
@@ -128,4 +136,12 @@ class FormRegister extends Component {
   }
 }
 
-export default FormRegister;
+// export default FormRegister;
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+const mapDispatchToProps = { register };
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormRegister);

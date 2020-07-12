@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col, Container, Form, FormGroup } from "reactstrap";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // import axios from "axios";
 import swal from "sweetalert";
@@ -110,12 +110,6 @@ class FormLogin extends Component {
   // }
 
   render() {
-    const { redirect } = this.state;
-
-    if (redirect) {
-      return <Redirect to="/" />;
-    }
-
     return (
       <>
         <div className={Styles.loginArea}>
@@ -140,7 +134,7 @@ class FormLogin extends Component {
                         type="text"
                         name="username"
                         value={this.state.username}
-                        placeholder="Username or Email Address"
+                        placeholder="Username"
                         onChange={(e) =>
                           this.setState({ username: e.target.value })
                         }

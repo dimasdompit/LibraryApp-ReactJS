@@ -26,7 +26,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 // import SearchBar from "../../../components/molecules/SearchBar";
 
 import Styles from "../../../styles/pages/Home/Home.module.css";
-import { createLogger } from "redux-logger";
+// import { createLogger } from "redux-logger";
 
 class Topnav extends Component {
   constructor(props) {
@@ -36,11 +36,6 @@ class Topnav extends Component {
       search: "",
       sort: "",
       order: "",
-      genre: "genre",
-      author: "author",
-      title: "title",
-      asc: "ASC",
-      desc: "DESC",
     };
   }
 

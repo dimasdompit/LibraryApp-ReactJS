@@ -154,6 +154,7 @@ class Home extends Component {
       .then((response) => {
         let totalData = response.value.data.data["COUNT(*)"];
         const totalPage = parseInt(totalData / this.state.pagination.limit);
+        // console.log(totalPage);
         let pages = [];
         for (let i = 0; i < totalPage; i++) {
           pages.push(i);
