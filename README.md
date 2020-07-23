@@ -121,36 +121,36 @@ http://localhost:3006/
 
 #### Register Page
 
-[Register Page](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/register-page.png)
+![Register Page](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/register-page.png)
 
 #### Login Page
 
-[Login Page](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/login-page.png)
+![Login Page](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/login-page.png)
 
 #### Home Page 1
 
-[Home Page 1](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/home-page-1.png)
+![Home Page 1](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/home-page-1.png)
 
 #### Home Page 1
 
-[Home Page 2](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/home-page-2.png)
+![Home Page 2](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/home-page-2.png)
 
 #### Book Details Page
 
-[Book Details Page](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/detail-page.png)
+![Book Details Page](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/detail-page.png)
 
 #### Borrow History Modal
 
-[Borrow History Modal](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/modal-return.png)
+![Borrow History Modal](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/modal-return.png)
 
 #### Add Book Modal
 
-[Add Book Modal](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/modal-add.png)
+![Add Book Modal](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/modal-add.png)
 
 #### Edit Book Modal
 
-[Edit Book Modal](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/modal-edit.png)
+![Edit Book Modal](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/modal-edit.png)
 
 #### Delete Book Modal
 
-[Delete Book Modal](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/modal-delete.png)
+![Delete Book Modal](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/modal-delete.png)
