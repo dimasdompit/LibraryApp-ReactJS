@@ -127,11 +127,11 @@ http://localhost:3006/
 
 ![Login Page](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/login-page.png)
 
-#### Home Page 1
+#### Home Page (Carousel)
 
 ![Home Page 1](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/home-page-1.png)
 
-#### Home Page 1
+#### Home Page (Book List)
 
 ![Home Page 2](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/home-page-2.png)
 
