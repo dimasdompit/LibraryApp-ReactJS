@@ -68,16 +68,15 @@ http://localhost:3006/
 |           reactstrap           |                            https://github.com/reactstrap                            |
 |          react-slick           |                        https://github.com/akiran/react-slick                        |
 |           sweetalert           |                         https://github.com/t4t5/sweetalert                          |
-|           react-redux          |                         https://github.com/reduxjs/react-redux                      |
-|           redux          |                         https://github.com/reduxjs/redux                      |
-|           redux-logger          |                         https://github.com/LogRocket/redux-logger                      |
-|           redux-persist          |                         https://github.com/rt2zz/redux-persist                      |
-|           redux-promise-middleware          |                         https://github.com/pburtchaell/redux-promise-middleware                      |
-|           jwt-decode          |                         https://github.com/auth0/jwt-decode                      |
-|           dotenv          |                         https://github.com/motdotla/dotenv                      |
-|           react-moment          |                         https://github.com/headzoo/react-moment                      |
-|           query-string          |                         https://github.com/sindresorhus/query-string                      |
-
+|          react-redux           |                       https://github.com/reduxjs/react-redux                        |
+|             redux              |                          https://github.com/reduxjs/redux                           |
+|          redux-logger          |                      https://github.com/LogRocket/redux-logger                      |
+|         redux-persist          |                       https://github.com/rt2zz/redux-persist                        |
+|    redux-promise-middleware    |               https://github.com/pburtchaell/redux-promise-middleware               |
+|           jwt-decode           |                         https://github.com/auth0/jwt-decode                         |
+|             dotenv             |                         https://github.com/motdotla/dotenv                          |
+|          react-moment          |                       https://github.com/headzoo/react-moment                       |
+|          query-string          |                    https://github.com/sindresorhus/query-string                     |
 
 ## Requirements
 
@@ -117,3 +116,41 @@ http://localhost:3006/
 ## License
 
 [MIT License](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/LICENSE)
+
+## Screenshot
+
+#### Register Page
+
+[Register Page](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/register-page.png)
+
+#### Login Page
+
+[Login Page](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/login-page.png)
+
+#### Home Page 1
+
+[Home Page 1](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/home-page-1.png)
+
+#### Home Page 1
+
+[Home Page 2](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/home-page-2.png)
+
+#### Book Details Page
+
+[Book Details Page](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/detail-page.png)
+
+#### Borrow History Modal
+
+[Borrow History Modal](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/modal-return.png)
+
+#### Add Book Modal
+
+[Add Book Modal](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/modal-add.png)
+
+#### Edit Book Modal
+
+[Edit Book Modal](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/modal-edit.png)
+
+#### Delete Book Modal
+
+[Delete Book Modal](https://github.com/dimasdompit/LibraryApp-ReactJS/blob/master/screenshot/modal-delete.png)
