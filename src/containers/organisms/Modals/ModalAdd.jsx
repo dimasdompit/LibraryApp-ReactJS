@@ -61,23 +61,14 @@ class ModalAdd extends Component {
     formData.append("author_id", this.state.author);
     formData.append("status", this.state.status);
 
-    // axios({
-    //   method: "POST",
-    //   url: "http://localhost:3000/books/",
-    //   data: formData,
-    //   headers: {
-    //     Authorization: token,
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    // })
     this.props
       .addBooks(token, formData)
       .then((response) => {
-        // console.log(response);
+        console.log(response);
         this.props.getBooks(token);
         swal({
           icon: "success",
-          title: `Book is Successfully Added`,
+          title: `"${response.value.data.data.title}" is successfully added!`,
           showConfirmaButton: false,
           timer: 3000,
         });
@@ -88,10 +79,11 @@ class ModalAdd extends Component {
         // }, 3000);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response);
+        const errorMsg = error.response.data.data;
         swal({
           icon: "error",
-          title: `Add book is invalid!`,
+          title: `${errorMsg}`,
           confirmButtonColor: "#000000",
         });
       });
