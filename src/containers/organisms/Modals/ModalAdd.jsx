@@ -37,7 +37,7 @@ class ModalAdd extends Component {
       description: "",
       genre: "",
       author: "",
-      status: "",
+      status: "Available",
     };
   }
 
@@ -167,6 +167,7 @@ class ModalAdd extends Component {
                         this.setState({ author: e.target.value })
                       }
                     >
+                      <option value="">-- Select Author --</option>
                       {this.props.author.map((author) => {
                         return (
                           <option
@@ -193,6 +194,7 @@ class ModalAdd extends Component {
                       id="genre"
                       onChange={(e) => this.setState({ genre: e.target.value })}
                     >
+                      <option value="">-- Select Genre --</option>
                       {this.props.genre.map((genre) => {
                         return (
                           <option key={genre.genre_id} value={genre.genre_id}>
@@ -204,7 +206,7 @@ class ModalAdd extends Component {
                   </FormGroup>
                 </Col>
               </Row>
-              <Row>
+              {/* <Row>
                 <Col md="3" className="mt-2">
                   <Label>Status</Label>
                 </Col>
@@ -228,7 +230,7 @@ class ModalAdd extends Component {
                     </Input>
                   </FormGroup>
                 </Col>
-              </Row>
+              </Row> */}
             </ModalBody>
             <ModalFooter className={footerStyle}>
               <Button

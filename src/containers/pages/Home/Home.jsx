@@ -81,13 +81,7 @@ class Home extends Component {
     /* GET ALL BOOKS REDUX */
     this.props
       .getBooks(token, qs)
-      .then((response) => {
-        // const data = response.value.data.data.result;
-        // console.log(data);
-        // this.setState({
-        //   books: response.data.data.result,
-        // });
-      })
+      .then((response) => {})
       .catch((error) => {
         console.log(error);
       });
@@ -152,9 +146,8 @@ class Home extends Component {
     this.props
       .getBooks(token, qs)
       .then((response) => {
-        let totalData = response.value.data.data["COUNT(*)"];
-        const totalPage = parseInt(totalData / this.state.pagination.limit);
-        // console.log(totalPage);
+        let totalData = response.value.data.data.totalBooks;
+        const totalPage = totalData / this.state.pagination.limit;
         let pages = [];
         for (let i = 0; i < totalPage; i++) {
           pages.push(i);
@@ -216,20 +209,11 @@ class Home extends Component {
 
   /* =========== GET ALL GENRE ============ */
   getAllGenre = () => {
-    // let token = localStorage.getItem("token");
     const token = this.props.auth.data.token;
 
-    // axios({
-    //   method: "GET",
-    //   url: "http://localhost:3000/genre",
-    //   headers: {
-    //     Authorization: token,
-    //   },
-    // })
     this.props
       .getGenre(token)
       .then((response) => {
-        // console.log(response.value.data.data);
         this.setState({
           genre: response.value.data.data,
         });
@@ -241,13 +225,11 @@ class Home extends Component {
 
   /* =========== GET ALL AUTHOR ============ */
   getAllAuthor = () => {
-    // let token = localStorage.getItem("token");
     const token = this.props.auth.data.token;
 
     this.props
       .getAuthor(token)
       .then((response) => {
-        // console.log(response.data);
         this.setState({
           author: response.value.data.data,
         });
@@ -332,7 +314,6 @@ class Home extends Component {
                       );
                     })}
                   </Row>
-                  {/* {this.state.pagination.limit >= 6 ? ( */}
                   <Row className="d-flex justify-content-center mt-5">
                     {/* PAGINTATION */}
                     <Button
@@ -375,9 +356,6 @@ class Home extends Component {
                       <FontAwesomeIcon icon={faAngleDoubleRight} />
                     </Button>
                   </Row>
-                  {/* // ) : (
-                  //   ""
-                  // )} */}
                 </div>
               </Container>
             </Col>

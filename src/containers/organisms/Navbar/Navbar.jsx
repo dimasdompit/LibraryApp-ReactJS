@@ -16,6 +16,7 @@ import {
   InputGroupAddon,
   Button,
   Form,
+  Row,
 } from "reactstrap";
 
 import queryString from "query-string";
@@ -44,13 +45,6 @@ class Topnav extends Component {
       isOpen: !this.state.isOpen,
     });
   };
-
-  // handleInputChange = async (event) => {
-  //   await this.setState({
-  //     search: event.target.value,
-  //   });
-  //   this.props.handleState(this.state.search);
-  // };
 
   handleSearch = (event) => {
     // event.preventDefault();
@@ -155,29 +149,33 @@ class Topnav extends Component {
                     )
                   }
                 >
-                  <Input
-                    type="select"
-                    className={`${Styles.homeDropdownCategories} mr-2`}
-                    name="sortBy"
-                    onChange={(e) => this.setState({ sort: e.target.value })}
-                    value={this.state.sort}
-                  >
-                    <option value="">All Categories</option>
-                    <option value="title">Title</option>
-                    <option value="genre">Genre</option>
-                    <option value="author">Author</option>
-                  </Input>
-                  <Input
-                    type="select"
-                    name="sortType"
-                    className={`${Styles.homeDropdownTime} mr-2`}
-                    onChange={(e) => this.setState({ order: e.target.value })}
-                    value={this.state.order}
-                  >
-                    <option value="">All Time</option>
-                    <option value="asc">A - Z</option>
-                    <option value="desc">Z - A</option>
-                  </Input>
+                  <Row>
+                    <Input
+                      type="select"
+                      className={`${Styles.homeDropdownCategories} mr-2`}
+                      name="sortBy"
+                      onChange={(e) => this.setState({ sort: e.target.value })}
+                      value={this.state.sort}
+                    >
+                      <option value="">All Categories</option>
+                      <option value="title">Title</option>
+                      <option value="genre">Genre</option>
+                      <option value="author">Author</option>
+                    </Input>
+                  </Row>
+                  <Row>
+                    <Input
+                      type="select"
+                      name="sortType"
+                      className={`${Styles.homeDropdownTime} mr-2`}
+                      onChange={(e) => this.setState({ order: e.target.value })}
+                      value={this.state.order}
+                    >
+                      <option value="">All Time</option>
+                      <option value="asc">A - Z</option>
+                      <option value="desc">Z - A</option>
+                    </Input>
+                  </Row>
                   <input type="hidden" name="page" value={1} />
                   <Button
                     className={`${Styles.homeDropdownBtn}`}

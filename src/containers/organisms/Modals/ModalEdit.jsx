@@ -31,10 +31,10 @@ class ModalEdit extends Component {
     super(props);
     this.state = {
       modal: false,
-      title: this.props.title,
-      image: this.props.image,
+      title: this.props.book.data.title,
+      image: this.props.book.data.image,
       description: this.props.description,
-      genre: this.props.genre,
+      genre: this.props.book.data.genre,
       author: this.props.author,
       status: this.props.status,
     };
@@ -61,16 +61,6 @@ class ModalEdit extends Component {
     formData.append("author_id", this.state.author);
     formData.append("status", this.state.status);
 
-    // axios({
-    //   method: "PUT",
-    //   url: "http://localhost:3000/books/" + id,
-    //   data: formData,
-    //   headers: {
-    //     Authorization: token,
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    // })
-
     this.props
       .editBooks(token, id, formData)
       .then((response) => {
@@ -92,7 +82,7 @@ class ModalEdit extends Component {
         console.log(error.response);
         swal({
           icon: "error",
-          title: "Something went wrong!",
+          title: `${error.response.data.data}`,
           confirmButtonColor: "#000000",
         });
       });
@@ -176,6 +166,9 @@ class ModalEdit extends Component {
                         this.setState({ author: e.target.value })
                       }
                     >
+                      <option value={this.props.book.data.author}>
+                        -- Select Author --
+                      </option>
                       {this.props.authors.map((author) => {
                         return (
                           <option
@@ -202,6 +195,7 @@ class ModalEdit extends Component {
                       id="genre"
                       onChange={(e) => this.setState({ genre: e.target.value })}
                     >
+                      <option value="">-- Select Genre --</option>
                       {this.props.genres.map((genre) => {
                         return (
                           <option key={genre.genre_id} value={genre.genre_id}>
@@ -235,7 +229,7 @@ class ModalEdit extends Component {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  book: state.auth,
+  book: state.book,
 });
 
 const mapDispatchToProps = { editBooks, getBooks };

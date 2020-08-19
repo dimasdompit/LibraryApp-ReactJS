@@ -90,6 +90,50 @@ class BookDetailsById extends Component {
     });
   };
 
+  // handleReturnBooks = (event) => {
+  //   event.preventDefault();
+
+  //   const token = localStorage.getItem("token");
+  //   event.preventDefault();
+  //   const id = this.props.id;
+
+  //   axios({
+  //     method: "PUT",
+  //     url: "http://localhost:3000/books/return/" + id,
+  //     headers: {
+  //       Authorization: token,
+  //     },
+  //   })
+  //     .then((response) => {
+  //       console.log(response);
+  //       swal({
+  //         icon: "success",
+  //         title: `${response.data.data}`,
+  //         showConfirmaButton: false,
+  //         timer: 3000,
+  //       });
+  //     })
+  //     .then(() => {
+  //       setTimeout(() => {
+  //         window.location.reload();
+  //       }, 3000);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.response);
+  //       swal({
+  //         icon: "error",
+  //         title: `${error.response.data.data}`,
+  //         confirmButtonColor: "#000000",
+  //       });
+  //     });
+  // };
+
+  componentDidMount() {
+    this.checkAuth();
+    this.getAllAuthor();
+    this.getAllGenre();
+  }
+
   /* ======== HANDLE BORROW BOOKS ======== */
   handleBorrowBooks = () => {
     // event.preventDefault();
@@ -150,50 +194,6 @@ class BookDetailsById extends Component {
       });
   };
 
-  // handleReturnBooks = (event) => {
-  //   event.preventDefault();
-
-  //   const token = localStorage.getItem("token");
-  //   event.preventDefault();
-  //   const id = this.props.id;
-
-  //   axios({
-  //     method: "PUT",
-  //     url: "http://localhost:3000/books/return/" + id,
-  //     headers: {
-  //       Authorization: token,
-  //     },
-  //   })
-  //     .then((response) => {
-  //       console.log(response);
-  //       swal({
-  //         icon: "success",
-  //         title: `${response.data.data}`,
-  //         showConfirmaButton: false,
-  //         timer: 3000,
-  //       });
-  //     })
-  //     .then(() => {
-  //       setTimeout(() => {
-  //         window.location.reload();
-  //       }, 3000);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.response);
-  //       swal({
-  //         icon: "error",
-  //         title: `${error.response.data.data}`,
-  //         confirmButtonColor: "#000000",
-  //       });
-  //     });
-  // };
-
-  componentDidMount() {
-    this.checkAuth();
-    this.getAllAuthor();
-    this.getAllGenre();
-  }
-
   render() {
     const heroStyles = {
       width: "100%",
@@ -203,6 +203,8 @@ class BookDetailsById extends Component {
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
     };
+
+    console.log(this.props.id);
 
     return (
       <>

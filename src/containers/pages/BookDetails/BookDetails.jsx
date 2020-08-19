@@ -13,22 +13,12 @@ class BookDetails extends Component {
   }
 
   getBookDetails = () => {
-    // const token = localStorage.getItem("token");
     const token = this.props.auth.data.token;
     const id = this.props.match.params.id;
-
-    // axios({
-    //   method: "GET",
-    //   url: "http://localhost:3000/books/" + id,
-    //   headers: {
-    //     Authorization: token,
-    //   },
-    // })
 
     this.props
       .getBooksById(token, id)
       .then((response) => {
-        // console.log(response.data.data);
         this.props.getBooks(token);
         this.setState({
           books: response.value.data.data,
