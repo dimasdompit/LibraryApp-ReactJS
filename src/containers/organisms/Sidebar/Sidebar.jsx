@@ -15,7 +15,7 @@ export default class Sidebar extends Component {
         <Row>
           <Col className={Styles.homeProfileImg}>
             <img
-              src="http://localhost:3006/profile-img.png"
+              src="http://54.227.69.145:3006/profile-img.png"
               alt="profile-image"
             />
           </Col>

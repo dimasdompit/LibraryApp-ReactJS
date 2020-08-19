@@ -250,7 +250,7 @@ class Topnav extends Component {
             <NavbarBrand className={Styles.homeBrand}>
               <img
                 href="/"
-                src="http://localhost:3006/bookshelf-home.png"
+                src="http://54.227.69.145:3000/bookshelf-home.png"
                 alt="home-logo"
               />
               {/* <span>DOMSLibrary</span> */}

@@ -166,8 +166,8 @@ class Home extends Component {
       })
       .catch((error) => {
         console.log(error);
-        this.props.logout();
         this.props.history.push("/login");
+        this.props.logout();
         // window.location.pathname = "/login";
       });
   };
