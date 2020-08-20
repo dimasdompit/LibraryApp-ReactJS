@@ -1,6 +1,7 @@
 const initialState = {
   isLoading: false,
   isError: false,
+  isLoggedIn: false,
   errorMsg: "",
   data: {},
 };
@@ -13,12 +14,14 @@ const auth = (state = initialState, action) => {
         ...state,
         isLoading: true,
         isError: false,
+        isLoggedIn: false,
       };
     case "REGISTER_REJECTED":
       return {
         ...state,
         isLoading: false,
         isError: true,
+        isLoggedIn: false,
         errorMsg: "DATA REJECTED!",
       };
     case "REGISTER_FULFILLED":
@@ -26,6 +29,7 @@ const auth = (state = initialState, action) => {
         ...state,
         isLoading: false,
         isError: false,
+        isLoggedIn: false,
         data: action.payload.data.data,
       };
 
@@ -35,12 +39,14 @@ const auth = (state = initialState, action) => {
         ...state,
         isLoading: true,
         isError: false,
+        isLoggedIn: false,
       };
     case "LOGIN_REJECTED":
       return {
         ...state,
         isLoading: false,
         isError: true,
+        isLoggedIn: false,
         errorMsg: "Data Rejected!",
       };
     case "LOGIN_FULFILLED":
@@ -49,6 +55,7 @@ const auth = (state = initialState, action) => {
         ...state,
         isLoading: false,
         isError: false,
+        isLoggedIn: true,
         data: action.payload.data.data,
       };
 
@@ -58,6 +65,7 @@ const auth = (state = initialState, action) => {
         ...state,
         isLoading: false,
         isError: false,
+        isLoggedIn: false,
         errorMsg: "",
         data: {},
       };

@@ -70,44 +70,7 @@ class FormLogin extends Component {
           confirmButtonColor: "#000000",
         });
       });
-
-    //   axios({
-    //     method: "POST",
-    //     url: "http://localhost:3000/auth/login",
-    //     data: {
-    //       username: this.state.username,
-    //       password: this.state.password,
-    //     },
-    //   })
-    //     .then((response) => {
-    //       console.log(response);
-    //       localStorage.setItem("token", response.data.data.token);
-    //       localStorage.setItem("refreshToken", response.data.data.refreshToken);
-    //       this.setState({
-    //         redirect: true,
-    //         isLoggedIn: true,
-    //       });
-    //       swal({
-    //         icon: "success",
-    //         title: `${response.data.data.status}`,
-    //         button: false,
-    //         timer: 2000,
-    //       });
-    //     })
-    //     .catch((error) => {
-    //       console.log(error.response);
-    //       swal({
-    //         icon: "error",
-    //         title: `${error.response.data.data}`,
-    //         showConfirmButton: false,
-    //         confirmButtonColor: "#000000",
-    //       });
-    //     });
   };
-
-  // componentDidMount() {
-  //   // this.handleLogin();
-  // }
 
   render() {
     return (
@@ -171,8 +134,6 @@ class FormLogin extends Component {
     );
   }
 }
-
-// export default FormLogin;
 
 const mapStateToProps = (state) => ({
   auth: state.auth,

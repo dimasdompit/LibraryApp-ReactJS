@@ -256,3 +256,24 @@
 .historyStatus {
   color: rgb(0, 177, 0);
 }
+
+/* ====== iPad SCREEN ====== */
+@media screen and (max-width: 768px) {
+  .homeSidebar {
+    overflow: hidden;
+  }
+  .cardContent {
+    width: 210px;
+    height: 20rem;
+  }
+
+  .cardText {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 572px) {
+  .homeSidebar {
+    display: none;
+  }
+}

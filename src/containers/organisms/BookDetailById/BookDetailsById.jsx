@@ -179,11 +179,11 @@ class BookDetailsById extends Component {
           timer: 3000,
         });
       })
-      // .then(() => {
-      //   setTimeout(() => {
-      //     window.location.reload();
-      //   }, 3000);
-      // })
+      .then(() => {
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+      })
       .catch((error) => {
         console.log(error.response);
         swal({

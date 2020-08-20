@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import "moment-timezone";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
@@ -8,10 +13,12 @@ import Register from "./containers/pages/Register/Register";
 import BookDetails from "./containers/pages/BookDetails/BookDetails";
 import Home from "./containers/pages/Home/Home";
 
+import { connect } from "react-redux";
+
 import "./App.css";
 require("dotenv").config();
 
-function App() {
+function App(props) {
   return (
     <Router>
       <Switch>
@@ -25,4 +32,9 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  book: state.book,
+});
+
+export default connect(mapStateToProps)(App);

@@ -23,6 +23,7 @@ import Sidebar from "../../organisms/Sidebar/Sidebar";
 import BookCards from "../../../components/molecules/BookCards";
 import BookSlider from "../../organisms/Slider/Slider";
 import LoadingScreen from "../../organisms/Loading/Loading";
+import { Redirect } from "react-router-dom";
 
 // import auth from "../../../redux/reducers/auth";
 
@@ -166,8 +167,8 @@ class Home extends Component {
       })
       .catch((error) => {
         console.log(error);
-        this.props.history.push("/login");
-        this.props.logout();
+        // this.props.history.push("/login");
+        // this.props.logout();
         // window.location.pathname = "/login";
       });
   };
@@ -248,122 +249,116 @@ class Home extends Component {
 
   render() {
     return (
-      <>
-        <Container fluid>
-          <Row className={Styles.homeDashboard}>
-            <Col md="3" sm="4" className={Styles.homeSidebar}>
-              {/* ===== SIDEBAR AREA ===== */}
-              <Sidebar
-                userId={this.state.id}
-                genre={this.state.genre}
-                author={this.state.author}
-                status={this.state.status}
-                username={this.state.username}
-                roles={this.state.roles}
-                onClick={this.handleLogout}
-              />
-            </Col>
-            <Col md="9" sm="8" className={Styles.homeBody}>
-              <Container fluid>
+      <Container fluid>
+        <Row className={Styles.homeDashboard}>
+          <Col md="3" sm="4" className={Styles.homeSidebar}>
+            {/* ===== SIDEBAR AREA ===== */}
+            <Sidebar
+              userId={this.state.id}
+              genre={this.state.genre}
+              author={this.state.author}
+              status={this.state.status}
+              username={this.state.username}
+              roles={this.state.roles}
+              onClick={this.handleLogout}
+            />
+          </Col>
+          <Col md="9" sm="8" className={Styles.homeBody}>
+            <Container fluid>
+              <Row>
+                {/* <Topnav /> */}
+                {/* ===== NAVBAR AREA ===== */}
+                <Topnav
+                  genre={this.state.genre}
+                  author={this.state.author}
+                  getGenre={this.handleSort}
+                  getAuthor={this.handleSort}
+                  getTitle={this.handleSort}
+                  getAsc={this.handleSort}
+                  getDesc={this.handleSort}
+                  // search={this.state.search}
+                  history={this.props.history}
+                  handleState={this.handleParams}
+                  handleStateSort={this.handleSort}
+                />
+              </Row>
+              <div className={Styles.homeContent}>
                 <Row>
-                  {/* <Topnav /> */}
-                  {/* ===== NAVBAR AREA ===== */}
-                  <Topnav
-                    genre={this.state.genre}
-                    author={this.state.author}
-                    getGenre={this.handleSort}
-                    getAuthor={this.handleSort}
-                    getTitle={this.handleSort}
-                    getAsc={this.handleSort}
-                    getDesc={this.handleSort}
-                    // search={this.state.search}
-                    history={this.props.history}
-                    handleState={this.handleParams}
-                    handleStateSort={this.handleSort}
-                  />
+                  {/* ===== SLIDER AREA ===== */}
+                  <Col className={Styles.homeSlider}>
+                    <BookSlider />
+                  </Col>
                 </Row>
-                <div className={Styles.homeContent}>
-                  <Row>
-                    {/* ===== SLIDER AREA ===== */}
-                    <Col className={Styles.homeSlider}>
-                      <BookSlider />
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <h4>List Books</h4>
-                      <hr />
-                    </Col>
-                  </Row>
-                  <Row className={Styles.cardRow}>
-                    {/* ====== CARDS AREA ======= */}
-                    {this.props.book.data.result.map((book) => {
-                      return (
-                        <BookCards
-                          key={book.id}
-                          id={book.id}
-                          author={book.author}
-                          genre={book.genre}
-                          image={book.image}
-                          title={book.title}
-                          description={`${book.description.substring(
-                            0,
-                            80
-                          )}...`}
-                        />
-                      );
-                    })}
-                  </Row>
-                  <Row className="d-flex justify-content-center mt-5">
-                    {/* PAGINTATION */}
-                    <Button
-                      color="warning"
-                      className="mr-1"
-                      onClick={() =>
-                        this.getBooksPerPage(this.state.pagination.page - 1)
-                      }
-                      disabled={this.state.pagination.page === 1 ? true : false}
-                    >
-                      <FontAwesomeIcon icon={faAngleDoubleLeft} />
-                    </Button>
-                    {this.state.pagination.totalPage.map((page) => {
-                      return (
-                        <Button
-                          className="mr-1 ml-1"
-                          key={page}
-                          color="warning"
-                          onClick={() => {
-                            this.getBooksPerPage(page + 1);
-                          }}
-                        >
-                          {page + 1}
-                        </Button>
-                      );
-                    })}
-                    <Button
-                      color="warning"
-                      className="ml-1"
-                      onClick={() =>
-                        this.getBooksPerPage(this.state.pagination.page + 1)
-                      }
-                      disabled={
-                        this.state.pagination.page ===
-                        this.state.pagination.totalPage.length
-                          ? true
-                          : false
-                      }
-                    >
-                      <FontAwesomeIcon icon={faAngleDoubleRight} />
-                    </Button>
-                  </Row>
-                </div>
-              </Container>
-            </Col>
-          </Row>
-        </Container>
-      </>
+                <Row>
+                  <Col>
+                    <h4>List Books</h4>
+                    <hr />
+                  </Col>
+                </Row>
+                <Row className={Styles.cardRow}>
+                  {/* ====== CARDS AREA ======= */}
+                  {this.props.book.data.result.map((book) => {
+                    return (
+                      <BookCards
+                        key={book.id}
+                        id={book.id}
+                        author={book.author}
+                        genre={book.genre}
+                        image={book.image}
+                        title={book.title}
+                        description={`${book.description.substring(0, 80)}...`}
+                      />
+                    );
+                  })}
+                </Row>
+                <Row className="d-flex justify-content-center mt-5">
+                  {/* PAGINTATION */}
+                  <Button
+                    color="warning"
+                    className="mr-1"
+                    onClick={() =>
+                      this.getBooksPerPage(this.state.pagination.page - 1)
+                    }
+                    disabled={this.state.pagination.page === 1 ? true : false}
+                  >
+                    <FontAwesomeIcon icon={faAngleDoubleLeft} />
+                  </Button>
+                  {this.state.pagination.totalPage.map((page) => {
+                    return (
+                      <Button
+                        className="mr-1 ml-1"
+                        key={page}
+                        color="warning"
+                        onClick={() => {
+                          this.getBooksPerPage(page + 1);
+                        }}
+                      >
+                        {page + 1}
+                      </Button>
+                    );
+                  })}
+                  <Button
+                    color="warning"
+                    className="ml-1"
+                    onClick={() =>
+                      this.getBooksPerPage(this.state.pagination.page + 1)
+                    }
+                    disabled={
+                      this.state.pagination.page ===
+                      this.state.pagination.totalPage.length
+                        ? true
+                        : false
+                    }
+                  >
+                    <FontAwesomeIcon icon={faAngleDoubleRight} />
+                  </Button>
+                </Row>
+              </div>
+            </Container>
+          </Col>
+        </Row>
+      </Container>
     );
-    // }
   }
 }
 
